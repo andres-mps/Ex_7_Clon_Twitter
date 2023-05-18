@@ -61,6 +61,10 @@ module.exports = async () => {
 for(tweet of tweets){
   tweet.likes = _.sampleSize(tweets, [n=4]);
 }
+for(user of users){
+  user.following = _.sampleSize(tweets, [n=4]);
+  user.followers = _.sampleSize(tweets, [n=4]);
+}
   /*===========fin LOOP USERS ================*/
 
   /*=========== LOOP TWEETS tomando user.id ================*/
