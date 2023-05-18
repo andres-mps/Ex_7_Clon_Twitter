@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include("../partials/meta") %>
+  </head>
+
+  <body>
+    <div class="container w-50">
+      <h1 class="my-4">FOLLOWING</h1>
+
+      <!-- tarjeta FOLLOWERS -->
+      <% for (const user of users){ %>
+      <div class="card-footer bg-white">
+        <div class="row d-flex align-items-center g-0">
+          <div class="col-2">
+            <div>
+              <img
+                src="/img/icons/generic_avatar.PNG"
+                class="img-fluid rounded-circle avatar"
+                alt="..."
+              />
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="card-body px-3">
+              <h5 class="card-title mb-0 p-0 fs-6"><%= user.firstname %><%= user.lastname %></h5>
+              <p class="card-text">
+                <small class="text-body-tertiary"><%= user.username%></small>
+              </p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="text-end">
+              <a class="btn btn-primary mt-1" href="#" role="button">Follow</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% } %>
+      <!-- tarjeta FOLLOWERS -->
+    </div>
+  </body>
+</html>

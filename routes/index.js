@@ -18,6 +18,8 @@
  */
 
 const publicRoutes = require("./publicRoutes");
+const userFollowsRoutes = require("./userFollowsRoutes");
+
 // const privateRoutes = require("./privateRoutes");
 
 module.exports = (app) => {
@@ -29,6 +31,7 @@ module.exports = (app) => {
    */
 
   // app.use("/usuarios", userRoutes);
+  app.use("/usuarios", userFollowsRoutes); // para ver /following /followers
   app.use("/", publicRoutes);
 };
 
