@@ -49,12 +49,10 @@ module.exports = (app) => {
   );
 
   passport.serializeUser((user, cb) => {
-    console.log("[Passport] Serialize User");
     cb(null, user.id);
   });
 
   passport.deserializeUser(async (id, cb) => {
-    console.log("[Passport] Deserialize User");
     try {
       const user = await User.findById(id);
       cb(null, user); // Usuario queda disponible en req.user.
