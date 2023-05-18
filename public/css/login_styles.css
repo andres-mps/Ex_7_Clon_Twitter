@@ -26,9 +26,8 @@ body {
   font-weight: 500;
   font-size: 16px;
 }
-#form input::placeholder {
-  color: #7b7b7b;
-}
+#form input::placeholder,
+#form input[type="file"],
 #form input[type="file"]::file-selector-button {
   color: #7b7b7b;
 }
