@@ -22,72 +22,57 @@ faker.locale = "es";
 
 module.exports = async () => {
   /*=========== LOOP USERS ================*/
-  
  const users = [];
  const tweets = [];
  try{
-    for (let i = 0; i < 10; i++) {
-    const randomEmail = faker.internet.email();
-    const user = new User({
-      firstname: faker.name.firstName(),
-      lastname: faker.name.lastName(),
-      username: randomEmail,
-      email: randomEmail,
-      password: await bcrypt.hash("123", 5),
-      bio: faker.lorem.paragraph(),
-      avatar: faker.name.lastName(), // CAMBIAR
-      //following:,  // los cargaremos asyncronicos luego de obtener los ID de USERS
-      //followers:, // los cargaremos asyncronicos luego de obtener los ID de USERS
-      createdAt: faker.date.past(),
-      updatedAt: new Date(),
-     // tweets: , // los cargaremos asyncronicos luego de obtener los ID de los TWEETS
-    });
-    users.push(user);
-    for (let i = 0; i < 5; i++) {
-      const tweet = new Tweet({
-        content: faker.lorem.sentence(10),
-        author: user, 
-        likes: user,
+      for (let i = 0; i < 10; i++) {
+        const randomEmail = faker.internet.email();
+        const user = new User({
+        firstname: faker.name.firstName(),
+        lastname: faker.name.lastName(),
+        username: randomEmail,
+        email: randomEmail,
+        password: await bcrypt.hash("123", 5),
+        bio: faker.lorem.paragraph(),
+        avatar: faker.image.avatar(), 
+        //following:,  // los cargaremos luego
+        //followers:, // los cargaremos luego
+        createdAt: faker.date.past(),
+        updatedAt: new Date(),
+      // tweets: , // los cargaremos luego
       });
-      user.tweets.push(tweet);
-      await tweet.save();
+     
+        for (let i = 0; i < 2; i++) {
+          const tweet = new Tweet({
+            content: faker.lorem.sentence(10),
+            author: user, 
+            likes: user,
+          });
+        user.tweets.push(tweet);
+        tweets.push(tweet)
+        }
+      users.push(user);
+    
       }
-  
-    }
- }catch(error){ 
-  console.log(error)
+  }catch(error){ 
+    console.log(error)
 }
-  /*===========fin LOOP USERS ================*/
 
-  /*=========== LOOP TWEETS tomando user.id ================*/
- 
- 
+for(const tweet of tweets){
+  tweet.likes = _.sampleSize(users, [n=2]);
+}
+for(const user of users){
+  const followings = _.sampleSize(users, [n=3]);
+  const followedByUser = followings.filter( u => u.id !== user.id ); // nos aseguramos que los followings no coincidan con el user
+  user.following.push(...followedByUser) // user.following = followedByUser;  
+  for(const following of followedByUser){
+    following.followers.push(user);
+  }
+}
 
-
-  /*=========== fin LOOP TWEETS tomando user.id ================*/
-
-  // guardamos en la base los documentos TWEETS y USERS
   await Tweet.insertMany(tweets);
   await User.insertMany(users);
 
-  /*=========== LOOP USERS: FOLLOWER, FOLLOWING & TWEETS ================*/
-  //buscamos los users por ID para agregarles FOLLOWERS, FOLLOWING y TWEETS:
-  
-    /*=========== TRATANDO QUE FUNCIONE TWEETS POR AUTOR Y FOLLOWER/ING QUE NO SEAN EL USER ================*/
-  // for (let i = 0; i < 10; i++) {
-  //   const id = usersId[i];
-  //   const author = await Tweet.find({user: id});
-  //   const userFilter = _.filter(usersId, function(user) {
-  //     return user != id;
-  //   });
-  //   console.log(userFilter)
-  //   await User.findByIdAndUpdate(id, {
-  //     following: [_.sample(usersId)],
-  //     followers: [_.sample(usersId)],
-  //     //tweets: //author.user,
-  //   });
-  // }
-  /*=========== fin LOOP USERS: FOLLOWER, FOLLOWING & TWEETS ================*/
 
   console.log("[Database] Se agregaron FOLLOWER, FOLLOWING y TWEETS.");
 
