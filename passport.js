@@ -10,12 +10,10 @@
 
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
-const passportLocalMongoose = require("passport-local-mongoose");
 const User = require("./models/User");
-const comparePasswords = require("./models/User");
 const bcrypt = require("bcryptjs"); 
 
-//User.plugin(passportLocalMongoose); // DUDO SI VA ACÁ O EN SERVER.JS
+
 
 module.exports = (app) => {
   app.use(passport.session());
@@ -29,7 +27,6 @@ module.exports = (app) => {
       async function (email, password, cb) {
         try{
         const user = await User.findOne({ email: email });
-        console.log(user);
         if (!user) {
           console.log("Usuario no existe.");
           return cb(null, false, { message: "Email incorrecto." });
