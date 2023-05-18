@@ -22,40 +22,44 @@ faker.locale = "es";
 
 module.exports = async () => {
   /*=========== LOOP USERS ================*/
-  
  const users = [];
  const tweets = [];
  try{
-    for (let i = 0; i < 10; i++) {
-    const randomEmail = faker.internet.email();
-    const user = new User({
-      firstname: faker.name.firstName(),
-      lastname: faker.name.lastName(),
-      username: randomEmail,
-      email: randomEmail,
-      password: await bcrypt.hash("123", 5),
-      bio: faker.lorem.paragraph(),
-      avatar: faker.name.lastName(), // CAMBIAR
-      //following:,  // los cargaremos asyncronicos luego de obtener los ID de USERS
-      //followers:, // los cargaremos asyncronicos luego de obtener los ID de USERS
-      createdAt: faker.date.past(),
-      updatedAt: new Date(),
-     // tweets: , // los cargaremos asyncronicos luego de obtener los ID de los TWEETS
-    });
-    users.push(user);
-    for (let i = 0; i < 5; i++) {
-      const tweet = new Tweet({
-        content: faker.lorem.sentence(10),
-        author: user, 
-        likes: user,
+      for (let i = 0; i < 10; i++) {
+        const randomEmail = faker.internet.email();
+        const user = new User({
+        firstname: faker.name.firstName(),
+        lastname: faker.name.lastName(),
+        username: randomEmail,
+        email: randomEmail,
+        password: await bcrypt.hash("123", 5),
+        bio: faker.lorem.paragraph(),
+        avatar: faker.image.avatar(), 
+        //following:,  // los cargaremos luego
+        //followers:, // los cargaremos luego
+        createdAt: faker.date.past(),
+        updatedAt: new Date(),
+      // tweets: , // los cargaremos luego
       });
-      user.tweets.push(tweet);
-      await tweet.save();
+     
+        for (let i = 0; i < 5; i++) {
+          const tweet = new Tweet({
+            content: faker.lorem.sentence(10),
+            author: user, 
+            likes: user,
+          });
+        user.tweets.push(tweet);
+        tweets.push(tweet)
+        }
+      users.push(user);
+    
       }
-  
-    }
- }catch(error){ 
-  console.log(error)
+  }catch(error){ 
+    console.log(error)
+}
+
+for(tweet of tweets){
+  tweet.likes = _.sampleSize(tweets, [n=4]);
 }
   /*===========fin LOOP USERS ================*/
 
