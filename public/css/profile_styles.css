@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+
+#blueBox {
+  height: 200px;
+  background-color: #1d9bf0;
+}
+
+#profilePhoto {
+  position: absolute;
+  top: 100px;
+  left: 1rem;
+  z-index: 10;
+  border: 8px solid white;
+  object-fit: cover;
+}
+
+.userInfo {
+  height: 200px;
+  /*background-color: lightblue;*/
+}
+
+#button {
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 1rem;
+  background-color: #1d9bf0;
+  border: none;
+  border-radius: 40px;
+  width: 100%;
+}
+
+h2 {
+  font-size: 1.8rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  color: grey;
+}
