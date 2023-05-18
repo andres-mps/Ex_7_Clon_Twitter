@@ -3,7 +3,12 @@ const router = express.Router();
 const pagesController = require("../controllers/pagesController");
 
 router.get("/", pagesController.showHome);
-
+router.get("/login", function (req, res) {
+  res.render("pages/login");
+});
+router.get("/register", function (req, res) {
+  res.render("pages/register");
+});
 router.get("*", function (req, res) {
   res.status(404).render("pages/404");
 });
