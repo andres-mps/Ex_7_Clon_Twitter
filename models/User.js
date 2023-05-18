@@ -10,12 +10,10 @@ const userSchema = new Schema({
   password: String,
   bio: String,
   avatar: String,
-  following: Schema.Types.ObjectId,
-  followers: Schema.Types.ObjectId,
-  createdAt: Date,
-  updatedAt: Date,
-  tweets: Schema.Types.ObjectId,
-});
+  following: [{type:Schema.Types.ObjectId, ref: "User"}],
+  followers: [{type:Schema.Types.ObjectId, ref: "User"}],
+  tweets: [{type: Schema.Types.ObjectId, ref: "Tweet"}]
+}, {timestamps: true});
 
 const User = mongoose.model("User", userSchema);
 

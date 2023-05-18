@@ -20,15 +20,15 @@ faker.locale = "es";
 
 module.exports = async () => {
   const tweets = [];
-  for (let i = 0; i < 100; i++) {
-    tweets.push({
-      content: "test contnet",
-      createdAt: faker.date.past(),
-      likes: 2,
-      // user: _.sample(users); ????
-    });
-  }
-  await Tweet.insertMany(tweets);
+  // for (let i = 0; i < 100; i++) {
+  //   tweets.push({
+  //     content: "test contnet",
+  //     createdAt: faker.date.past(),
+  //     likes: 2,
+  //     // user: _.sample(users); ????
+  //   });
+  // }
+  // await Tweet.insertMany(tweets);
 
   console.log("[Database] Se corrió el seeder de Tweets.");
 };
