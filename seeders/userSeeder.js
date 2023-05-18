@@ -25,7 +25,7 @@ module.exports = async () => {
  const users = [];
  const tweets = [];
  try{
-      for (let i = 0; i < 10; i++) {
+      for (let i = 0; i < 4; i++) {
         const randomEmail = faker.internet.email();
         const user = new User({
         firstname: faker.name.firstName(),
@@ -42,7 +42,7 @@ module.exports = async () => {
       // tweets: , // los cargaremos luego
       });
      
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 2; i++) {
           const tweet = new Tweet({
             content: faker.lorem.sentence(10),
             author: user, 
@@ -59,11 +59,18 @@ module.exports = async () => {
 }
 
 for(tweet of tweets){
-  tweet.likes = _.sampleSize(tweets, [n=4]);
+  tweet.likes = _.sampleSize(users, [n=2]);
 }
 for(user of users){
-  user.following = _.sampleSize(tweets, [n=4]);
-  user.followers = _.sampleSize(tweets, [n=4]);
+  const followings = _.sampleSize(users, [n=1]);
+  // const followers = _.sampleSize(users, [n=4]);
+  user.following = followings;
+  // user.followers = followers;
+  for(following of followings){
+    const index = _.find(users, following);
+    index.followers = user;
+    console.log(index);
+  }
 }
   /*===========fin LOOP USERS ================*/
 
