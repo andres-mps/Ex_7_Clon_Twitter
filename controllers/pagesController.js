@@ -1,3 +1,6 @@
+const User = require("../models/User");
+const Tweet = require("../models/Tweet");
+
 /**
  * Este archivo se utiliza en un proyecto donde se está utlizando server-side
  * rendering (ej: con un motor de templates como EJS). Tiene como objetivo
@@ -17,6 +20,29 @@
  */
 
 async function showHome(req, res) {
+  const user = new User({
+    firstname: "prueba",
+    lastname: "prueba",
+    username: "prueba",
+    email: "prueba",
+    password: "prueba",
+    bio: "prueba",
+    avatar: "prueba",
+    following: ["646564fe989e5697465ce3e8"],
+    followers: ["646564fe989e5697465ce3e8"],
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    tweets: ["646564fe989e5697465ce3e8"],
+  });
+  await user.save();
+  const tweet = new Tweet({
+    content: "fasdfas  ads fasdf asdf",
+    createdAt: new Date(),
+    likes: 3,
+    user: ["646564fe989e5697465ce3e8"],
+  });
+
+  await tweet.save();
   res.render("pages/home");
 }
 

@@ -8,10 +8,13 @@ const userSchema = new Schema({
   username: String,
   email: String,
   password: String,
-  description: String,
-  profileImg: String,
-  following: [{ id: Schema.Types.ObjectId }],
-  followers: [{ id: Schema.Types.ObjectId }],
+  bio: String,
+  avatar: String,
+  following: Schema.Types.ObjectId,
+  followers: Schema.Types.ObjectId,
+  createdAt: Date,
+  updatedAt: Date,
+  tweets: Schema.Types.ObjectId,
 });
 
 const User = mongoose.model("User", userSchema);

@@ -2,12 +2,12 @@ const { mongoose, Schema } = require("../db");
 const { User } = require("./User");
 
 const tweetSchema = new Schema({
-  text: {
+  content: {
     type: String,
     maxLength: 140,
   },
   createdAt: Date,
-  likes: Number,
+  // likes: Number, // CAMBIAR Schema.Types.ObjectId,
   user: {
     type: Schema.Types.ObjectId,
     ref: "User",
