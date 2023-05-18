@@ -1,20 +1,26 @@
+const passport = require("passport");
 const { mongoose, Schema } = require("../db");
 const { User } = require("./User");
 
-const tweetSchema = new Schema({
-  content: {
-    type: String,
-    maxLength: 140,
+const tweetSchema = new Schema(
+  {
+    content: {
+      type: String,
+      maxLength: 140,
+    },
+    likes: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+    author: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
   },
-  likes: [{
-    type: Schema.Types.ObjectId,
-    ref: "User",
-  }],
-  author: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
-  },
-}, {timestamps: true});
+  { timestamps: true },
+);
 
 const Tweet = mongoose.model("Tweet", tweetSchema);
 

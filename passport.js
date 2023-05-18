@@ -10,6 +10,10 @@
 
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
+const User = require("./models/User");
+const bcrypt = require("bcryptjs"); 
+
+
 
 module.exports = (app) => {
   app.use(passport.session());
@@ -20,22 +24,40 @@ module.exports = (app) => {
         usernameField: "email",
         passwordField: "password",
       },
-      async function (username, password, cb) {
-        // Este código sólo se llama si username y password están definidos.
-        console.log("[LocalStrategy] Username:", username); // To-Do: Borrar este `console.log` luego de hacer pruebas.
-        console.log("[LocalStrategy] Password:", password); // To-Do: Borrar este `console.log` luego de hacer pruebas.
-        // Completar código...
+      async function (email, password, cb) {
+        try{
+        const user = await User.findOne({ email: email });
+        if (!user) {
+          console.log("Usuario no existe.");
+          return cb(null, false, { message: "Email incorrecto." });
+        }
+
+        const match = await bcrypt.compare(password, user.password);;
+
+        if (!match) {
+          console.log("La contraseña es inválida.");
+          return cb(null, false, { message: "Contraseña incorrecta." });
+        }
+
+        console.log("Login successful");
+        return cb(null, user);
+      }catch(error){
+        return cb(error);
+      }
       },
     ),
   );
 
-  passport.serializeUser((user, done) => {
-    console.log("[Passport] Serialize User"); // To-Do: Borrar este `console.log` luego de hacer pruebas.
-    // Completar código...
+  passport.serializeUser((user, cb) => {
+    cb(null, user.id);
   });
 
-  passport.deserializeUser(async (id, done) => {
-    console.log("[Passport] Deserialize User"); // To-Do: Borrar este `console.log` luego de hacer pruebas.
-    // Completar código...
+  passport.deserializeUser(async (id, cb) => {
+    try {
+      const user = await User.findById(id);
+      cb(null, user); // Usuario queda disponible en req.user.
+    } catch (err) {
+      cb(err);
+    }
   });
 };

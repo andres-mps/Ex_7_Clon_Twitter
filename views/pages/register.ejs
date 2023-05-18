@@ -28,7 +28,7 @@
         <div id="form" class="col-12 col-md-6 col-lg-5 rounded-3">
           <h1 class="fw-semibold fs-2">Sign Up</h1>
           <p>Create an account and start using Twitter</p>
-          <form>
+          <form enctype="multipart/form-data" method="post">
             <!-- First Name input -->
             <div class="form-outline mb-4">
               <input
@@ -42,11 +42,11 @@
             <!-- Last Name input -->
             <div class="form-outline mb-4">
               <input
-                type="lasttname"
-                id="lasttname"
+                type="lastname"
+                id="lastname"
                 class="form-control form-control-lg"
                 placeholder="Last name"
-                name="lasttname"
+                name="lastname"
               />
             </div>
             <!-- Email input -->
@@ -71,7 +71,7 @@
             </div>
             <!-- Image input -->
             <div class="mb-3">
-              <input class="form-control" type="file" id="image" name="image" />
+              <input class="form-control" type="file" id="avatar" name="avatar" />
             </div>
 
             <!-- Password input -->
@@ -87,7 +87,7 @@
 
             <div class="text-center text-lg-start mt-4 pt-2">
               <button
-                type="button"
+                type="submit"
                 class="btn btn-lg"
                 style="padding-left: 2.5rem; padding-right: 2.5rem"
               >
