@@ -25,7 +25,7 @@ module.exports = async () => {
  const users = [];
  const tweets = [];
  try{
-      for (let i = 0; i < 4; i++) {
+      for (let i = 0; i < 10; i++) {
         const randomEmail = faker.internet.email();
         const user = new User({
         firstname: faker.name.firstName(),
@@ -58,51 +58,21 @@ module.exports = async () => {
     console.log(error)
 }
 
-for(tweet of tweets){
+for(const tweet of tweets){
   tweet.likes = _.sampleSize(users, [n=2]);
 }
-for(user of users){
-  const followings = _.sampleSize(users, [n=1]);
-  // const followers = _.sampleSize(users, [n=4]);
-  user.following = followings;
-  // user.followers = followers;
-  for(following of followings){
-    const index = _.find(users, following);
-    index.followers = user;
-    console.log(index);
+for(const user of users){
+  const followings = _.sampleSize(users, [n=3]);
+  const followedByUser = followings.filter( u => u.id !== user.id ); // nos aseguramos que los followings no coincidan con el user
+  user.following.push(...followedByUser) // user.following = followedByUser;  
+  for(const following of followedByUser){
+    following.followers.push(user);
   }
 }
-  /*===========fin LOOP USERS ================*/
 
-  /*=========== LOOP TWEETS tomando user.id ================*/
- 
- 
-
-
-  /*=========== fin LOOP TWEETS tomando user.id ================*/
-
-  // guardamos en la base los documentos TWEETS y USERS
   await Tweet.insertMany(tweets);
   await User.insertMany(users);
 
-  /*=========== LOOP USERS: FOLLOWER, FOLLOWING & TWEETS ================*/
-  //buscamos los users por ID para agregarles FOLLOWERS, FOLLOWING y TWEETS:
-  
-    /*=========== TRATANDO QUE FUNCIONE TWEETS POR AUTOR Y FOLLOWER/ING QUE NO SEAN EL USER ================*/
-  // for (let i = 0; i < 10; i++) {
-  //   const id = usersId[i];
-  //   const author = await Tweet.find({user: id});
-  //   const userFilter = _.filter(usersId, function(user) {
-  //     return user != id;
-  //   });
-  //   console.log(userFilter)
-  //   await User.findByIdAndUpdate(id, {
-  //     following: [_.sample(usersId)],
-  //     followers: [_.sample(usersId)],
-  //     //tweets: //author.user,
-  //   });
-  // }
-  /*=========== fin LOOP USERS: FOLLOWER, FOLLOWING & TWEETS ================*/
 
   console.log("[Database] Se agregaron FOLLOWER, FOLLOWING y TWEETS.");
 
