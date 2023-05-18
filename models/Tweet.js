@@ -6,13 +6,15 @@ const tweetSchema = new Schema({
     type: String,
     maxLength: 140,
   },
-  createdAt: Date,
-  // likes: Number, // CAMBIAR Schema.Types.ObjectId,
-  user: {
+  likes: [{
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  }],
+  author: {
     type: Schema.Types.ObjectId,
     ref: "User",
   },
-});
+}, {timestamps: true});
 
 const Tweet = mongoose.model("Tweet", tweetSchema);
 
