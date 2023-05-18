@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
+    <title>Sign Up</title>
     <!-- Bootstrap -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
@@ -23,21 +23,55 @@
           class="col d-none d-md-flex flex-column align-items-baseline justify-content-between rounded-start-3 p-5"
         >
           <img src="img/icons/twitter-logo-white.svg" style="height: 50px" />
-          <span class="fw-semibold fs-4">Hey! Nice to see you again&#x1F970;</span>
+          <span class="fw-semibold fs-4">Hi! Welcome to Twitter Clone&#128075;</span>
         </div>
         <div id="form" class="col-12 col-md-6 col-lg-5 rounded-3">
-          <h1 class="fw-semibold fs-2">Login</h1>
-          <p>Ready to start using Twitter?</p>
+          <h1 class="fw-semibold fs-2">Sign Up</h1>
+          <p>Create an account and start using Twitter</p>
           <form>
+            <!-- First Name input -->
+            <div class="form-outline mb-4">
+              <input
+                type="firstname"
+                id="firstname"
+                class="form-control form-control-lg"
+                placeholder="First name"
+                name="firstname"
+              />
+            </div>
+            <!-- Last Name input -->
+            <div class="form-outline mb-4">
+              <input
+                type="lasttname"
+                id="lasttname"
+                class="form-control form-control-lg"
+                placeholder="Last name"
+                name="lasttname"
+              />
+            </div>
             <!-- Email input -->
             <div class="form-outline mb-4">
               <input
                 type="email"
                 id="email"
                 class="form-control form-control-lg"
-                placeholder="Email or username"
+                placeholder="Email"
                 name="email"
               />
+            </div>
+            <!-- Username input -->
+            <div class="form-outline mb-4">
+              <input
+                type="username"
+                id="username"
+                class="form-control form-control-lg"
+                placeholder="Username"
+                name="username"
+              />
+            </div>
+            <!-- Image input -->
+            <div class="mb-3">
+              <input class="form-control" type="file" id="image" name="image" />
             </div>
 
             <!-- Password input -->
@@ -57,10 +91,10 @@
                 class="btn btn-lg"
                 style="padding-left: 2.5rem; padding-right: 2.5rem"
               >
-                Login
+                Sign up
               </button>
               <p class="small mt-2 pt-1 mb-0 text-center">
-                Don't have an account? <a href="/register">Sign Up</a>
+                Already have an account? <a href="/login">Sign in</a>
               </p>
             </div>
           </form>
