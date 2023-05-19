@@ -18,8 +18,8 @@
  */
 
 const publicRoutes = require("./publicRoutes");
-const userFollowsRoutes = require("./userFollowsRoutes");
 const authRoutes = require("./authRoutes");
+const userFollowsRoutes = require("./userFollowsRoutes");
 
 // const privateRoutes = require("./privateRoutes");
 
@@ -33,8 +33,8 @@ module.exports = (app) => {
 
   // app.use("/usuarios", userRoutes);
   app.use("/", authRoutes);
-  app.use("/", publicRoutes);
   app.use("/usuarios", userFollowsRoutes); // para ver /following /followers
+  app.use("/", publicRoutes);
 };
 
 // PD: Recordar que es muy importante el orden en que se definen las rutas.
