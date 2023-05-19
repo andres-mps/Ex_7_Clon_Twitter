@@ -1,10 +1,12 @@
 const User = require("../models/User");
 const Tweet = require("../models/Tweet");
+const { createUser } = require("./registerController");
 
 // Display a listing of the resource.
 async function index(req, res) {
-  const users = await User.find();
-  res.render("pages/following", { users });
+  const user = await User.findOne({ username: "@Naranjo" }).populate("following");
+  // res.json(user);
+  res.render("pages/following", { user });
 }
 
 // Display the specified resource.

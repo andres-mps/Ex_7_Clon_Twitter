@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+
+body {
+  font-family: "Inter", sans-serif;
+}
+#sidebarTweet,
+#sidebarIconTweet {
+  background-color: #1d9bf0;
+  color: #ffffff;
+}
+#sidebarIconTweet,
+#sidebarIconLogout {
+  margin-right: -7px;
+}
+#sidebarIconLogout {
+  background-color: #dc3545;
+  color: #ffffff;
+}

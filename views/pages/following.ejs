@@ -2,6 +2,8 @@
 <html>
   <head>
     <%- include("../partials/meta") %>
+
+    <link rel="stylesheet" href="/css/general_styles.css" />
   </head>
 
   <body>
@@ -13,8 +15,8 @@
             <a class="text-black" href="#"><i class="fas fa-arrow-left fa-lg"></i></a>
           </div>
           <div>
-            <h1 class="mb-0 fs-2"><%= users[1].firstname %> <%= users[1].lastname %></h1>
-            <small class="text-body-tertiary"><%= users[1].username%></small>
+            <h1 class="mb-0 fs-2"><%= user.firstname %> <%= user.lastname %></h1>
+            <small class="text-body-tertiary"><%= user.username%></small>
           </div>
         </div>
         <div class="d-flex justify-content-between ml-2 my-3">
@@ -23,7 +25,7 @@
         </div>
 
         <!-- tarjeta FOLLOWERS -->
-        <% for (const user of users){ %>
+        <% for (const followingUser of user.following){ %>
         <div class="card-footer bg-white">
           <div class="row mb-3 g-0">
             <div class="col-1">
@@ -37,9 +39,11 @@
             </div>
             <div class="col-5">
               <div class="card-body px-3">
-                <h5 class="card-title mb-0 p-0 fs-6"><%= user.firstname %><%= user.lastname %></h5>
+                <h5 class="card-title mb-0 p-0 fs-6">
+                  <%= followingUser.firstname %><%= followingUser.lastname %>
+                </h5>
                 <p class="card-text">
-                  <small class="text-body-tertiary"><%= user.username%></small>
+                  <small class="text-body-tertiary"><%= followingUser.username%></small>
                 </p>
               </div>
             </div>
