@@ -2,7 +2,7 @@
 <html>
   <head>
     <%- include("../partials/meta") %>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
     <link rel="stylesheet" href="/css/general_styles.css" />
   </head>
 
@@ -17,7 +17,7 @@
                 <a class="text-black" href="#"><i class="fas fa-arrow-left fa-lg"></i></a>
               </div>
               <div>
-                <h1 class="mb-0 fs-2"><%= user.firstname %> <%= user.lastname %></h1>
+                <h1 class="mb-0 mt-3 fs-2"><%= user.firstname %> <%= user.lastname %></h1>
                 <small class="text-body-tertiary"><%= user.username%></small>
               </div>
             </div>
@@ -50,6 +50,8 @@
                   </div>
                 </div>
                 <div class="col-6">
+                  <% if (_.indexOf([followersUser.following], user.id)) {%>
+
                   <div class="text-end">
                     <a
                       class="btn btn-outline-dark mt-1 rounded-pill px-3 fw-bold"
@@ -58,6 +60,13 @@
                       >Following</a
                     >
                   </div>
+                  <% } else { %>
+                  <div class="text-end">
+                    <a class="btn btn-primary mt-1 rounded-pill px-3 fw-bold" href="#" role="button"
+                      >AAA</a
+                    >
+                  </div>
+                  <% } %>
                 </div>
               </div>
             </div>
