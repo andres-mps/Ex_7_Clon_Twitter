@@ -14,9 +14,17 @@ router.get("/register", function (req, res) {
 router.get("/profile", function (req, res) {
   res.render("pages/profile");
 });
+<<<<<<< Updated upstream
 router.post("/register", authController.createUser);
+=======
+router.post("/register", registerController.createUser);
+router.get("/prueba", (req, res)=>{
+  res.render("partials/sidebarRight")
+})
+>>>>>>> Stashed changes
 router.get("*", function (req, res) {
   res.status(404).render("pages/404");
 });
+
 
 module.exports = router;
