@@ -1,12 +1,18 @@
 const User = require("../models/User");
 const Tweet = require("../models/Tweet");
-// const { createUser } = require("./authController");
+const _ = require("lodash");
 
 // Display a listing of the resource.
 async function index(req, res) {
   const user = await User.findOne({ username: "@Naranjo" }).populate("following");
   // res.json(user);
   res.render("pages/following", { user });
+}
+
+async function indexFollowers(req, res) {
+  const user = await User.findOne({ username: "@Naranjo" }).populate("followers");
+  // res.json(user);
+  res.render("pages/followers", { user, _ });
 }
 
 // Display the specified resource.
@@ -32,6 +38,7 @@ async function destroy(req, res) {}
 
 module.exports = {
   index,
+  indexFollowers,
   show,
   create,
   store,

@@ -3,6 +3,9 @@
 body {
   font-family: "Inter", sans-serif;
 }
+#leftSidebar {
+  min-height: 90vh;
+}
 #sidebarTweet,
 #sidebarIconTweet {
   background-color: #1d9bf0;
@@ -23,6 +26,11 @@ body {
   font-size: 16px;
   border: none;
   border-radius: 40px;
-  width: 100%;
   background-color: #1d9bf0;
+  padding: 4px;
+
+}
+.followBtn:hover {
+  background-color: #aab6d8;
+  color: black;
 }
