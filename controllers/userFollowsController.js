@@ -1,6 +1,6 @@
 const User = require("../models/User");
 const Tweet = require("../models/Tweet");
-const { createUser } = require("./registerController");
+// const { createUser } = require("./authController");
 
 // Display a listing of the resource.
 async function index(req, res) {

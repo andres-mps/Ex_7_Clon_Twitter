@@ -32,8 +32,8 @@ module.exports = (app) => {
    */
 
   // app.use("/usuarios", userRoutes);
-  app.use("/", publicRoutes);
   app.use("/", authRoutes);
+  app.use("/", publicRoutes);
   app.use("/usuarios", userFollowsRoutes); // para ver /following /followers
 };
 

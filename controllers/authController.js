@@ -15,6 +15,10 @@ async function login(req, res) {
   res.render("pages/login");
 }
 
+async function register(req, res) {
+  res.render("pages/register");
+}
+
 async function createUser(req, res) {
   const form = formidable({
     multiples: true,
@@ -41,9 +45,7 @@ async function createUser(req, res) {
       avatar: files["avatar"].newFilename,
     });
 
-    newUser.save();
-
-    // .then(res.redirect("/home"));
+    newUser.save().then(res.redirect("/"));
 
     // if (newUser) {
     //   req.login(newUser, () => res.redirect("/home"));
@@ -67,4 +69,5 @@ module.exports = {
   login,
   createUser,
   logout,
+  register,
 };
