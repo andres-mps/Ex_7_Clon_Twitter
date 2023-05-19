@@ -26,12 +26,12 @@ module.exports = async () => {
  const tweets = [];
  try{
       for (let i = 0; i < 10; i++) {
-        const randomEmail = faker.internet.email();
+        const lastname = faker.name.lastName();
         const user = new User({
         firstname: faker.name.firstName(),
-        lastname: faker.name.lastName(),
-        username: randomEmail,
-        email: randomEmail,
+        lastname: lastname,
+        username: `@${lastname}`,
+        email: `${lastname}@email.com`,
         password: await bcrypt.hash("123", 5),
         bio: faker.lorem.paragraph(),
         avatar: faker.image.avatar(), 
