@@ -9,7 +9,7 @@ router.get("/", pagesController.showHome);
 router.get("/profile", function (req, res) {
   res.render("pages/profile");
 });
-
+router.post("/register", registerController.createUser);
 router.get("/prueba", (req, res) => {
   res.render("partials/sidebarRight");
 });
