@@ -1,4 +1,4 @@
-<aside>
+<aside class="col-4 d-none d-sm-block">
     <div>
         <h2>What's happening</h2>
         <div>
@@ -20,16 +20,37 @@
 
     <div>
         <h2>Who to follow</h2>
-        <div>
-            <img src="" alt="">
-            <p>Hack Academy</p>
-            <p>@HackAcademyDev</p>
-            <button>Follow</button>
-        </div>
+        <div class="card-footer bg-white">
+            <div class="row mb-3 g-0">
+              <div class="col-1">
+                <div class="d-flex justify-content-end align-items-center">
+                  <img
+                    src="/img/icons/generic_avatar.PNG"
+                    class="img-fluid rounded-circle w-50 mb-2"
+                    alt="..."
+                  />
+                </div>
+              </div>
+              <div class="col-5">
+                <div class="card-body px-3">
+                  <h5 class="card-title mb-0 p-0 fs-6"><%= user.firstname %><%= user.lastname %></h5>
+                  <p class="card-text">
+                    <small class="text-body-tertiary"><%= user.username%></small>
+                  </p>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="text-end">
+                  <a
+                    class="btn btn-outline-dark mt-1 rounded-pill px-3 fw-bold"
+                    href="#"
+                    role="button"
+                    >Following</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
         
     </div>
-
-
-
-
 </aside>
