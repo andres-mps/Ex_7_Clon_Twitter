@@ -4,7 +4,7 @@ const Tweet = require("../models/Tweet");
 
 // Display a listing of the resource.
 async function index(req, res) {
-  const user = await User.findOne({ username: "@Naranjo" }).populate("following");
+  const user = await User.findOne({ username: "@Verduzco" }).populate("following");
   // res.json(user);
   res.render("pages/following", { user });
 }
