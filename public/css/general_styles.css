@@ -3,6 +3,9 @@
 body {
   font-family: "Inter", sans-serif;
 }
+#leftSidebar {
+  min-height: 90vh;
+}
 #sidebarTweet,
 #sidebarIconTweet {
   background-color: #1d9bf0;
