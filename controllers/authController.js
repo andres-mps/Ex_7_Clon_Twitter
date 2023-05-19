@@ -3,16 +3,16 @@ const bcrypt = require("bcryptjs");
 const formidable = require("formidable");
 const User = require("../models/User");
 
+async function login(req, res) {
+  res.render("pages/login");
+}
+
 async function loginPassport(req, res, next) {
   passport.authenticate("local", {
     successRedirect: req.session.redirectTo ? req.session.redirectTo : "/",
     failureRedirect: "/login",
     failureFlash: true,
   })(req, res);
-}
-
-async function login(req, res) {
-  res.render("pages/login");
 }
 
 async function register(req, res) {
@@ -65,9 +65,9 @@ async function logout(req, res) {
   console.log("Logout successful");
 }
 module.exports = {
-  loginPassport,
   login,
+  loginPassport,
+  register,
   createUser,
   logout,
-  register,
 };
