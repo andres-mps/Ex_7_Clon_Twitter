@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
 
+body {
+  font-family: "Inter", sans-serif;
+}
+
 #profileHeader {
   height: 200px;
   background-color: #1d9bf0;
@@ -14,7 +18,7 @@
   object-fit: cover;
 }
 
-.profileInfo {
+#profileInfo {
   height: 250px;
   /*background-color: lightblue;*/
 }
@@ -45,4 +49,9 @@ h3 {
 
 #userData {
   position: relative;
+}
+
+#tweets {
+  border-bottom: 5px solid #1d9bf0;
+  display: inline-block;
 }

@@ -21,9 +21,9 @@
         <div class="col-2"><%- include("../partials/sidebar.ejs") %></div>
         <!-- Left Sidebar -->
         <main class="col-6 p-0">
-          <div id="mainHeader">
-            <div id="profileHeader" class="position-relative">
-              <div class="containerPhoto">
+          <div id="mainHeader border">
+            <div id="profileHeader" class="row position-relative">
+              <div id="containerPhoto">
                 <img
                   id="profilePhoto"
                   src="img/foto_prueba.jpg"
@@ -34,37 +34,37 @@
                 />
               </div>
             </div>
-            <div class="profileInfo bg-light">
-              <div id="userData" class="row">
-                <div class="col">
-                  <div class="text-end p-0">
-                    <form method="post" action="">
-                      <button id="button" type="button" class="btn btn-sm">Follow</button>
-                    </form>
-                  </div>
-                  <div class="text-secondary text-end">
-                    <p id="followers">
-                      <strong class="text-black">123</strong> Followers
-                      <strong class="text-black">123</strong> Following
-                    </p>
+            <div id="profileInfo" class="row border position-relative">
+              <div class="col-2">
+                <div class="text-end p-0">
+                  <form method="post" action="">
+                    <button id="button" type="button" class="btn btn-sm">Follow</button>
+                  </form>
+                </div>
+              </div>
+              <div class="row p-0 m-0">
+                <div class="col-6 align-self-end">
+                  <div id="userName">
+                    <h2 class="fs-3 m-0">Nombre de Usuario</h2>
+                    <p class="fw-light fs-5 text-secondary m-0">@nombreDeUsuario</p>
                   </div>
                 </div>
-                <div class="col">
-                  <div id="userName" class="">
-                    <h2 class="fs-3">Nombre de Usuario</h2>
-                    <p class="fw-light fs-5 text-secondary">@nombreDeUsuario</p>
-                  </div>
-                  <div id = "tweets" class="">
-                    <h4 class="fs-5">Tweets</h4>
-                  </div>
+                <div class="col-6 text-secondary text-end align-self-end">
+                  <p class="m-0">
+                    <strong class="text-black">123</strong> Followers
+                    <strong class="text-black">123</strong> Following
+                  </p>
                 </div>
+              </div>
+              <div class="row p-0 m-0">
+                <div class="col-12 align-self-end">
+                  <h4 class="m-0" id="tweets">Tweets</h4>
+                </div>
+              </div>
             </div>
           </div>
         </main>
-        <div class="col-4 bg-secondary text-white">
-          <h2>Sidebar Right</h2>
-          <!--include("../partials/sidebarRight.ejs") %>-->
-        </div>
+        <div class="col-4"><%- include("../partials/sidebarRight") %></div>
       </div>
     </div>
     <!-- Bootstrap -->
