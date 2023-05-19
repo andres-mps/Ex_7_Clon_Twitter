@@ -28,7 +28,7 @@ async function createUser(req, res) {
       avatar: files["avatar"].newFilename,
     });
 
-    newUser.save().then(res.redirect("/home"));
+    newUser.save();
 
     // if (newUser) {
     //   req.login(newUser, () => res.redirect("/home"));
