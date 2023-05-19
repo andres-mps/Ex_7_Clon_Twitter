@@ -28,4 +28,8 @@ body {
   border-radius: 40px;
   width: 100%;
   background-color: #1d9bf0;
+  padding: 4px;
+}
+.followBtn:hover {
+  background-color: #dc3545;
 }
