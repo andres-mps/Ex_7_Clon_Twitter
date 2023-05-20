@@ -17,7 +17,6 @@
                 <a class="text-black" href="#"><i class="fas fa-arrow-left fa-lg"></i></a>
               </div>
               <div>
-                <h1><%= user.firstname %></h1>
                 <h1 class="mb-0 mt-3 fs-2"><%= user.firstname %> <%= user.lastname %></h1>
                 <small class="text-body-tertiary"><%= user.username%></small>
               </div>
@@ -64,7 +63,7 @@
                   <% } else { %>
                   <div class="text-end">
                     <a
-                      class="btn btn-primary mt-1 rounded-pill px-3 fw-bold"
+                      class="btn mt-1 rounded-pill px-3 fw-bold followBtn"
                       href="/usuarios/followers"
                       role="button"
                       >Follow</a
