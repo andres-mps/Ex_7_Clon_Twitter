@@ -40,17 +40,13 @@ async function edit(req, res) {}
 
 // Update the specified resource in storage.
 async function update(req, res) {
-  await User.findByIdAndUpdate(
-    "6468b089b64facf457306827",
-    following.push({ id: "6468b089b64facf45730682c" }),
-  );
+  await User.findByIdAndUpdate("6468b089b64facf457306827", { username: "prueba" }),
+    // await User.updateOne(
+    //   { _id: "6468b089b64facf457306827" },
+    //   { $push: { following: { id: "6468b089b64facf45730682c" } } },
+    // );
 
-  // await User.updateOne(
-  //   { _id: "6468b089b64facf457306827" },
-  //   { $push: { following: { id: "6468b089b64facf45730682c" } } },
-  // );
-
-  return res.redirect("/usuarios/followers");
+    res.redirect("/usuarios/followers");
 }
 
 // Remove the specified resource from storage.
