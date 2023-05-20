@@ -55,3 +55,29 @@ h3 {
   border-bottom: 5px solid #1d9bf0;
   display: inline-block;
 }
+
+#userTweet {
+  height: 200px;
+}
+
+#tweetButton {
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 1rem;
+  background-color: #1d9bf0;
+  border: none;
+  border-radius: 40px;
+  width: 100px;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  right: 1rem;
+  top: 1rem;
+}
+
+#homeHeader {
+  height: 200px;
+}
+
+textarea {
+  resize: none;
+}
