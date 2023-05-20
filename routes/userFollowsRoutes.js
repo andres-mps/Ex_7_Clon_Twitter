@@ -11,5 +11,6 @@ router.get("/following", userFollowsController.index);
 // router.delete("/:id", userFollowsController.destroy);
 
 router.get("/followers", userFollowsController.indexFollowers);
+router.patch("/followers", userFollowsController.update);
 
 module.exports = router;
