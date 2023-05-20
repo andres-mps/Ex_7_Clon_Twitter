@@ -1,11 +1,7 @@
 <div class="card-footer tweet p-0 mt-2">
   <div class="row mb-3 p-2 g-0 position-relative">
     <div class="col-1 d-flex align-items-start">
-      <img
-        src="<%=locals.user.avatar%>"
-        class="img-fluid rounded-circle w-100 mb-2"
-        alt="avatar"
-      />
+      <img src="<%=locals.user.avatar%>" class="img-fluid rounded-circle w-100 mb-2" alt="avatar" />
     </div>
     <!-- avatar -->
     <div class="col-10 ms-3">
@@ -22,9 +18,7 @@
       </div>
       <!-- tweet header -->
       <div>
-        <p>
-          <%= locals.user.tweets[0].content %>
-        </p>
+        <p><%= locals.user.tweets[0].content %></p>
       </div>
       <!-- tweet text -->
       <div class="col-12 d-flex justify-content-between align-items-center">
@@ -35,7 +29,7 @@
           <a href="#" role="button">
             <img src="../img/icons/like-active.svg" alt="like-active" />
           </a>
-          <p class="my-0 mx-2"><%= req.user.tweets[0].likes.length %></p>
+          <p class="my-0 mx-2"><%= locals.user.tweets[0].likes.length %></p>
         </div>
         <div>
           <a href="#" role="button">

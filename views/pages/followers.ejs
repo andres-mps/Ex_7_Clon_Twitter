@@ -51,23 +51,32 @@
                 </div>
                 <div class="col-6">
                   <% if (userFollower.followers.includes(user._id)) { %>
-
                   <div class="text-end">
-                    <a
-                      class="btn btn-outline-dark mt-1 rounded-pill px-3 fw-bold"
-                      href="#"
-                      role="button"
-                      >Following</a
+                    <form
+                      action="/usuarios/followers/update?_method=PATCH"
+                      method="post"
+                      class="d-inline"
                     >
+                      <button
+                        class="btn mt-1 btn-outline-dark rounded-pill px-3 fw-bold followBtn"
+                        type="submit"
+                      >
+                        unFollow
+                      </button>
+                    </form>
                   </div>
+
                   <% } else { %>
                   <div class="text-end">
-                    <a
-                      class="btn mt-1 rounded-pill px-3 fw-bold followBtn"
-                      href="/usuarios/followers/update"
-                      role="button"
-                      >Follow</a
+                    <form
+                      action="/usuarios/followers/update?_method=PATCH"
+                      method="post"
+                      class="d-inline"
                     >
+                      <button class="btn mt-1 rounded-pill px-3 fw-bold followBtn" type="submit">
+                        Follow
+                      </button>
+                    </form>
                   </div>
                   <% } %>
                 </div>

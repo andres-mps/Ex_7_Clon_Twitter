@@ -3,25 +3,16 @@ const Tweet = require("../models/Tweet");
 const _ = require("lodash");
 
 // Display a listing of the resource.
-async function index(req, res) {
-  const user = await User.findOne({ username: "@Medrano" }).populate("following");
+async function indexFollowing(req, res) {
+  const user = await User.findOne({ username: req.user.username }).populate("following");
 
   // res.json(user);
   res.render("pages/following", { user });
 }
 
 async function indexFollowers(req, res) {
-  const user = await User.findOne({ username: "@Carmona" }).populate("followers");
-  console.log(user._id);
-  console.log(user.followers[0].followers);
-
-  if (user.followers[0].followers.includes(user._id)) {
-    console.log("presente");
-  } else {
-    console.log("NO presente");
-  }
-
-  console.log(req.user);
+  const user = await User.findOne({ username: req.user.username }).populate("followers");
+  console.log(req.user.username);
   // res.json(req.user);
   res.render("pages/followers", { user });
 }
@@ -39,14 +30,16 @@ async function store(req, res) {}
 async function edit(req, res) {}
 
 // Update the specified resource in storage.
-async function update(req, res) {
-  await User.findByIdAndUpdate("6468b089b64facf457306827", { username: "prueba" }),
-    // await User.updateOne(
-    //   { _id: "6468b089b64facf457306827" },
-    //   { $push: { following: { id: "6468b089b64facf45730682c" } } },
-    // );
-
-    res.redirect("/usuarios/followers");
+async function updateFollower(req, res) {
+  // seguir a un Follower:
+  await User.findByIdAndUpdate(req.user.id, {
+    $push: { following: "64693aad15047cd3afe190e2" },
+  });
+  //agregamos al User como Follower
+  await User.findByIdAndUpdate("64693aad15047cd3afe190e2", {
+    $push: { followers: req.user.id },
+  });
+  res.redirect("/usuarios/followers");
 }
 
 // Remove the specified resource from storage.
@@ -56,12 +49,12 @@ async function destroy(req, res) {}
 // ...
 
 module.exports = {
-  index,
+  indexFollowing,
   indexFollowers,
   show,
   create,
   store,
   edit,
-  update,
+  updateFollower,
   destroy,
 };
