@@ -2,7 +2,7 @@
   <div class="row mb-3 p-2 g-0 position-relative">
     <div class="col-1 d-flex align-items-start">
       <img
-        src="/img/icons/generic_avatar.PNG"
+        src="<%=locals.user.avatar%>"
         class="img-fluid rounded-circle w-100 mb-2"
         alt="avatar"
       />
@@ -11,20 +11,19 @@
     <div class="col-10 ms-3">
       <div class="text-start">
         <div class="card-body d-flex align-content-start">
-          <h5 class="card-title p-0 fs-6">Username</h5>
+          <h5 class="card-title p-0 fs-6"><%=locals.user.firstname%> <%=locals.user.lastname%></h5>
           <p class="card-text my-0 mx-2">
-            <small class="text-body-tertiary">@username •</small>
+            <small class="text-body-tertiary"><%= locals.user.username%> •</small>
           </p>
           <p class="card-text my-0">
-            <small class="text-body-tertiary">6h (createdAt)</small>
+            <small class="text-body-tertiary"><%=locals.user.tweets[0].createdAt%></small>
           </p>
         </div>
       </div>
       <!-- tweet header -->
       <div>
         <p>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum eos explicabo esse magnam
-          possimus illum laboriosam dicta. At tempore consequuntur sunt quibusdam nisi.
+          <%= locals.user.tweets[0].content %>
         </p>
       </div>
       <!-- tweet text -->
@@ -36,7 +35,7 @@
           <a href="#" role="button">
             <img src="../img/icons/like-active.svg" alt="like-active" />
           </a>
-          <p class="my-0 mx-2">7 (like.length)</p>
+          <p class="my-0 mx-2"><%= req.user.tweets[0].likes.length %></p>
         </div>
         <div>
           <a href="#" role="button">
