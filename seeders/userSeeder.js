@@ -12,6 +12,7 @@
  * cantidad de registros de prueba que se insertarán en la base de datos.
  *
  */
+require("dotenv").config();
 const { faker } = require("@faker-js/faker");
 const User = require("../models/User");
 const Tweet = require("../models/Tweet");
@@ -25,7 +26,7 @@ module.exports = async () => {
   const users = [];
   const tweets = [];
   try {
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < process.env.SEEDER_TOTAL_USERS; i++) {
       const lastname = faker.name.lastName();
       const user = new User({
         firstname: faker.name.firstName(),
@@ -42,7 +43,7 @@ module.exports = async () => {
         // tweets: , // los cargaremos luego
       });
 
-      for (let i = 0; i < 2; i++) {
+      for (let i = 0; i < process.env.SEEDER_TWEETS_PER_USER; i++) {
         const tweet = new Tweet({
           content: faker.lorem.sentence(10),
           author: user,
