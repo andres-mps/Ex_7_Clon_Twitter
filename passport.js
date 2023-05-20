@@ -55,6 +55,7 @@ module.exports = (app) => {
   passport.deserializeUser(async (id, cb) => {
     try {
       const user = await User.findById(id);
+      console.log(user);
       cb(null, user); // Usuario queda disponible en req.user.
     } catch (err) {
       cb(err);
