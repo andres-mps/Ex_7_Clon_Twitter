@@ -61,7 +61,7 @@ module.exports = async () => {
     tweet.likes = _.sampleSize(users, [(n = 10)]);
   }
   for (const user of users) {
-    const followings = _.sampleSize(users, [(n = 15)]);
+    const followings = _.sampleSize(users, [(n = 10)]);
     const followedByUser = followings.filter((u) => u.id !== user.id); // nos aseguramos que los followings no coincidan con el user
     user.following.push(...followedByUser); // user.following = followedByUser;
     for (const following of followedByUser) {
