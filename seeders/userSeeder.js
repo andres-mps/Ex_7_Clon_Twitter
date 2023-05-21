@@ -43,7 +43,8 @@ module.exports = async () => {
         // tweets: , // los cargaremos luego
       });
 
-      for (let i = 0; i < process.env.SEEDER_TWEETS_PER_USER; i++) {
+      for (let i = 0; i < Math.floor(Math.random() * 20) + 1; i++) {
+        // TWEETS random entre 1 y 20
         const tweet = new Tweet({
           content: faker.lorem.sentence(10),
           author: user,
@@ -59,10 +60,13 @@ module.exports = async () => {
   }
 
   for (const tweet of tweets) {
-    tweet.likes = _.sampleSize(users, [(n = 10)]);
+    const N = Math.floor(Math.random() * process.env.SEEDER_TOTAL_USERS) + 1; // Likes random entre 1 y Total USERS
+    tweet.likes = _.sampleSize(users, [(n = N)]);
   }
+
   for (const user of users) {
-    const followings = _.sampleSize(users, [(n = process.env.SEEDER_FOLLOWERS_PER_USER)]);
+    const N = Math.floor((Math.random() * process.env.SEEDER_TOTAL_USERS) / 3) + 1; // FOLLOWING random entre 1 y (Total USERS)/3
+    const followings = _.sampleSize(users, [(n = N)]);
     const followedByUser = followings.filter((u) => u.id !== user.id); // nos aseguramos que los followings no coincidan con el user
     user.following.push(...followedByUser); // user.following = followedByUser;
     for (const following of followedByUser) {
