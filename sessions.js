@@ -9,7 +9,7 @@
  */
 
 const session = require("express-session");
-const flash = require("express-flash");
+const flash = require("connect-flash");
 
 module.exports = (app) => {
   app.use(

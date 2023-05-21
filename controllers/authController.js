@@ -7,11 +7,18 @@ async function login(req, res) {
   res.render("pages/login");
 }
 
-async function loginPassport(req, res, next) {
+async function loginPassport(req, res) {
   passport.authenticate("local", {
     successRedirect: req.session.redirectTo ? req.session.redirectTo : "/",
     failureRedirect: "/login",
-    failureFlash: true,
+    failureFlash: {
+      type: "failureFalsh",
+      menssage: "Incorrect user or password",
+    },
+    successFlash: {
+      type: "successFlash",
+      menssage: "Successfully validated credentials",
+    },
   })(req, res);
 }
 
@@ -27,25 +34,34 @@ async function createUser(req, res) {
   });
 
   form.parse(req, async (err, fields, files) => {
-    const {
-      firstname: firstname,
-      lastname: lastname,
-      username: username,
-      email: email,
-      password: password,
-    } = fields;
-
-    const newUser = new User({
-      firstname: firstname,
-      lastname: lastname,
-      username: username,
-      email: email,
-      password: await bcrypt.hash(password, 10),
-      bio: "",
-      avatar: files["avatar"].newFilename,
+    const users = await User.find();
+    const unavalilableUser = users.some((u) => {
+      u.username === fields.username || u.email === fields.email;
     });
+    if (unavalilableUser) {
+      req.flash("Este usuario ya existe");
+    } else {
+      const {
+        firstname: firstname,
+        lastname: lastname,
+        username: username,
+        email: email,
+        password: password,
+      } = fields;
 
-    newUser.save().then(res.redirect("/"));
+      const newUser = new User({
+        firstname: firstname,
+        lastname: lastname,
+        username: username,
+        email: email,
+        password: await bcrypt.hash(password, 10),
+        bio: "",
+        avatar: files["avatar"].newFilename,
+      });
+
+      //newUser.save().then(res.redirect("/usuarios"));
+      return res.redirect("/");
+    }
 
     // if (newUser) {
     //   req.login(newUser, () => res.redirect("/home"));
