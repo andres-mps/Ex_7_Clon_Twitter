@@ -16,16 +16,17 @@ async function loginPassport(req, res, next) {
 }
 
 async function register(req, res) {
-  res.render("pages/register");
+  res.render("pages/register", { message: req.flash("errors") });
 }
 
 async function createUser(req, res) {
+  let errors = [];
+
   const form = formidable({
     multiples: true,
     uploadDir: __dirname + "/../public/img/avatars",
     keepExtensions: true,
   });
-
   form.parse(req, async (err, fields, files) => {
     const {
       firstname: firstname,
@@ -35,17 +36,34 @@ async function createUser(req, res) {
       password: password,
     } = fields;
 
-    const newUser = new User({
-      firstname: firstname,
-      lastname: lastname,
-      username: username,
-      email: email,
-      password: await bcrypt.hash(password, 10),
-      bio: "",
-      avatar: files["avatar"].newFilename,
-    });
+    if (!firstname || !lastname || !username || !email || !password || !files) {
+      errors.push({ message: "Completar todos los campos" });
+    }
 
-    newUser.save().then(res.redirect("/"));
+    if (password.length < 6) {
+      errors.push({ message: "La contraseña debe tener al menos 6 caracteres" });
+    }
+
+    const userCheck = await User.findOne({ email: email });
+
+    if (userCheck) {
+      errors.push({ message: "Ese usuario ya existe" });
+    }
+
+    if (errors.length > 0) {
+      res.redirect("/register");
+    } else {
+      const newUser = new User({
+        firstname: firstname,
+        lastname: lastname,
+        username: username,
+        email: email,
+        password: await bcrypt.hash(password, 10),
+        bio: "",
+        avatar: files["avatar"].newFilename,
+      });
+      newUser.save().then(res.redirect("/"));
+    }
 
     // if (newUser) {
     //   req.login(newUser, () => res.redirect("/home"));

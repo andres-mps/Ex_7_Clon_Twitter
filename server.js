@@ -1,6 +1,8 @@
 require("dotenv").config();
 const path = require("path");
 const methodOverride = require("method-override");
+const flash = require("express-flash");
+
 const express = require("express");
 
 const sessions = require("./sessions");
@@ -19,6 +21,7 @@ app.set("view engine", "ejs");
 sessions(app);
 passport(app);
 
+app.use(flash());
 app.use(makeUserAvailableInViews);
 
 routes(app);

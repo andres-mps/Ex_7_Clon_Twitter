@@ -11,9 +11,7 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/User");
-const bcrypt = require("bcryptjs"); 
-
-
+const bcrypt = require("bcryptjs");
 
 module.exports = (app) => {
   app.use(passport.session());
@@ -23,27 +21,28 @@ module.exports = (app) => {
       {
         usernameField: "email",
         passwordField: "password",
+        passReqToCallback: true,
       },
       async function (email, password, cb) {
-        try{
-        const user = await User.findOne({ email: email });
-        if (!user) {
-          console.log("Usuario no existe.");
-          return cb(null, false, { message: "Email incorrecto." });
+        try {
+          const user = await User.findOne({ email: email });
+          if (!user) {
+            console.log("Usuario no existe.");
+            return cb(null, false, { message: "Email incorrecto." });
+          }
+
+          const match = await bcrypt.compare(password, user.password);
+
+          if (!match) {
+            console.log("La contraseña es inválida.");
+            return cb(null, false, { message: "Contraseña incorrecta." });
+          }
+
+          console.log("Login successful");
+          return cb(null, user);
+        } catch (error) {
+          return cb(error);
         }
-
-        const match = await bcrypt.compare(password, user.password);;
-
-        if (!match) {
-          console.log("La contraseña es inválida.");
-          return cb(null, false, { message: "Contraseña incorrecta." });
-        }
-
-        console.log("Login successful");
-        return cb(null, user);
-      }catch(error){
-        return cb(error);
-      }
       },
     ),
   );
