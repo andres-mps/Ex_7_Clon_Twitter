@@ -51,12 +51,18 @@
                 </div>
                 <div class="col-6">
                   <div class="text-end">
-                    <a
-                      class="btn btn-outline-dark mt-1 rounded-pill px-3 fw-bold"
-                      href="#"
-                      role="button"
-                      >Following</a
+                    <form
+                      action="/<%= locals.user.username %>/unfollowFollowing/<%=followingUser.id %>?_method=PATCH"
+                      method="post"
+                      class="d-inline"
                     >
+                      <button
+                        class="btn mt-1 btn-outline-dark rounded-pill px-3 fw-bold"
+                        type="submit"
+                      >
+                        Following
+                      </button>
+                    </form>
                   </div>
                 </div>
               </div>

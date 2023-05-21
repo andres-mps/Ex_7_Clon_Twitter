@@ -3,6 +3,8 @@ const router = express.Router();
 const userFollowsController = require("../controllers/userFollowsController");
 
 router.get("/following", userFollowsController.indexFollowing);
+router.patch("/unfollowFollowing/:followingId", userFollowsController.unfollowFollowing);
+
 // router.get("/crear", userFollowsController.create);
 // router.get("/:id", userFollowsController.show);
 // router.post("/", userFollowsController.store);
@@ -11,6 +13,7 @@ router.get("/following", userFollowsController.indexFollowing);
 // router.delete("/:id", userFollowsController.destroy);
 
 router.get("/followers", userFollowsController.indexFollowers);
-router.patch("/followers/update", userFollowsController.updateFollower);
+router.patch("/followFollower/:followerId", userFollowsController.followFollower);
+router.patch("/unfollowFollower/:followerId", userFollowsController.unfollowFollower);
 
 module.exports = router;

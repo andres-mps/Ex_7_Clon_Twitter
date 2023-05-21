@@ -8,7 +8,6 @@ const routes = require("./routes");
 const passport = require("./passport");
 const makeUserAvailableInViews = require("./middlewares/makeUserAvailableInViews");
 
-
 const APP_PORT = process.env.APP_PORT || 3000;
 const app = express();
 
@@ -21,6 +20,7 @@ sessions(app);
 passport(app);
 
 app.use(makeUserAvailableInViews);
+
 routes(app);
 
 app.listen(APP_PORT, () => {

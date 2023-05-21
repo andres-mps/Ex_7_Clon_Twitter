@@ -4,14 +4,14 @@
       ><img src="/img/icons/twitter-logo.svg" alt=""
     /></a>
 
-    <a class="btn mb-4 p-0 border-0 d-block text-end text-lg-start" href="#" role="button"
+    <a class="btn mb-4 p-0 border-0 d-block text-end text-lg-start" href="/" role="button"
       ><div class="me-1 d-inline-block" style="width: 23px">
         <img src="/img/icons/home.svg" alt="Home Icon" style="height: 21px" />
       </div>
       <p class="d-none d-lg-inline">Home</p></a
     >
 
-    <a class="btn mb-4 p-0 border-0 d-block text-end text-lg-start" href="#" role="button"
+    <a class="btn mb-4 p-0 border-0 d-block text-end text-lg-start" href="/<%= locals.user.username %>" role="button"
       ><div class="me-1 d-inline-block" style="width: 23px">
         <img src="/img/icons/profile.svg" alt="Profile Icon" style="height: 21px" />
       </div>
@@ -31,17 +31,17 @@
         class="rounded-circle p-2 d-lg-none"
         href="#
         role="button"
-        ><img src="../img/icons/write.svg" style="height: 21px;"
-      /></a>
+        ><img src="../img/icons/write.svg" style="height: 21px;"/>
+      </a>
     </div>
   </div>
 
   <div class="text-end text-lg-start">
-    <a class="btn btn-danger mt-1 rounded-pill px-3  w-100 fw-semibold d-none d-lg-inline-block" href="#" role="button">Logout</a>
+    <a class="btn btn-danger mt-1 rounded-pill px-3  w-100 fw-semibold d-none d-lg-inline-block" href="/logout" role="button">Logout</a>
     <a
     id="sidebarIconLogout"
         class="rounded-circle p-2 d-lg-none"
-        href="#
+        href="/logout"
         role="button"
         ><img src="../img/icons/logout.svg" style="height: 21px;"
       /></a>
