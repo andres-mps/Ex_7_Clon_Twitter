@@ -19,10 +19,10 @@
   <body>
     <div class="container">
       <div class="row">
-        <div class="col-2"><%- include("../partials/sidebar.ejs") %></div>
+        <div class="col-2 col-lg-2"><%- include("../partials/sidebar.ejs") %></div>
         <!-- Left Sidebar -->
-        <main class="col-6 p-0">
-          <div id="mainHeader border">
+        <main class="col-8 col-lg-6 p-0">
+          <div id="mainHeader">
             <div id="profileHeader" class="row position-relative">
               <div id="containerPhoto">
                 <img
@@ -46,15 +46,29 @@
               <div class="row p-0 m-0">
                 <div class="col-6 align-self-end">
                   <div id="userName">
-                    <h2 class="fs-3 m-0">Nombre de Usuario</h2>
-                    <p class="fw-light fs-5 text-secondary m-0">@nombreDeUsuario</p>
+                    <h2 class="fs-4 m-0">Nombre de Usuario</h2>
+                    <p class="fw-light m-0" style="color: #7b7b7b">@nombreDeUsuario</p>
                   </div>
                 </div>
-                <div class="col-6 text-secondary text-end align-self-end">
-                  <p class="m-0">
-                    <strong class="text-black">123</strong> Followers
-                    <strong class="text-black">123</strong> Following
-                  </p>
+                <div class="col-6 text-end align-self-end" style="color: #7b7b7b">
+                  <a
+                    class="text-decoration-none text-black"
+                    href="/<%= locals.user.username %>/followers"
+                  >
+                    <p class="m-0 d-inline-block">
+                      <strong class="text-black"><%= locals.user.followers.length %></strong>
+                      Followers
+                    </p>
+                  </a>
+                  <a
+                    class="text-decoration-none text-black"
+                    href="/<%= locals.user.username %>/following"
+                  >
+                    <p class="m-0 d-inline-block">
+                      <strong class="text-black"><%= locals.user.following.length %></strong>
+                      Following
+                    </p>
+                  </a>
                 </div>
               </div>
               <div class="row p-0 m-0">
@@ -64,8 +78,10 @@
               </div>
             </div>
           </div>
+
+          <div class="row position-relative border"><%- include("../partials/tweet") %></div>
         </main>
-        <div class="col-4"><%- include("../partials/sidebarRight") %></div>
+        <div class="col-2 col-lg-4"><%- include("../partials/sidebarRight") %></div>
       </div>
     </div>
     <!-- Bootstrap -->

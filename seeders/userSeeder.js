@@ -12,6 +12,7 @@
  * cantidad de registros de prueba que se insertarán en la base de datos.
  *
  */
+require("dotenv").config();
 const { faker } = require("@faker-js/faker");
 const User = require("../models/User");
 const Tweet = require("../models/Tweet");
@@ -25,7 +26,7 @@ module.exports = async () => {
   const users = [];
   const tweets = [];
   try {
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < process.env.SEEDER_TOTAL_USERS; i++) {
       const lastname = faker.name.lastName();
       const user = new User({
         firstname: faker.name.firstName(),
@@ -42,7 +43,8 @@ module.exports = async () => {
         // tweets: , // los cargaremos luego
       });
 
-      for (let i = 0; i < 2; i++) {
+      for (let i = 0; i < Math.floor(Math.random() * 20) + 1; i++) {
+        // TWEETS random entre 1 y 20
         const tweet = new Tweet({
           content: faker.lorem.sentence(10),
           author: user,
@@ -58,10 +60,13 @@ module.exports = async () => {
   }
 
   for (const tweet of tweets) {
-    tweet.likes = _.sampleSize(users, [(n = 10)]);
+    const N = Math.floor(Math.random() * process.env.SEEDER_TOTAL_USERS) + 1; // Likes random entre 1 y Total USERS
+    tweet.likes = _.sampleSize(users, [(n = N)]);
   }
+
   for (const user of users) {
-    const followings = _.sampleSize(users, [(n = 15)]);
+    const N = Math.floor((Math.random() * process.env.SEEDER_TOTAL_USERS) / 3) + 1; // FOLLOWING random entre 1 y (Total USERS)/3
+    const followings = _.sampleSize(users, [(n = N)]);
     const followedByUser = followings.filter((u) => u.id !== user.id); // nos aseguramos que los followings no coincidan con el user
     user.following.push(...followedByUser); // user.following = followedByUser;
     for (const following of followedByUser) {
@@ -71,8 +76,6 @@ module.exports = async () => {
 
   await Tweet.insertMany(tweets);
   await User.insertMany(users);
-
-  console.log("[Database] Se agregaron FOLLOWER, FOLLOWING y TWEETS.");
 
   console.log("[Database] Se corrió el seeder de Users.");
 };

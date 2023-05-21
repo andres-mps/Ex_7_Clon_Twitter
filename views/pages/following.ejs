@@ -9,12 +9,14 @@
   <body>
     <div class="container">
       <div class="row">
-        <div class="col-2"><%- include("../partials/sidebar") %></div>
-        <div class="col-6">
+        <div class="col-1 col-md-2"><%- include("../partials/sidebar") %></div>
+        <div class="col-11 col-md-6 col-lg-5">
           <div class="container-sm mw-50">
             <div class="d-flex flex-row align-items-center">
               <div class="mx-3">
-                <a class="text-black" href="#"><i class="fas fa-arrow-left fa-lg"></i></a>
+                <a class="text-black" href="/<%= locals.user.username %>"
+                  ><i class="fas fa-arrow-left fa-lg"></i
+                ></a>
               </div>
               <div>
                 <h1 class="mb-0 mt-3 fs-2"><%= user.firstname %> <%= user.lastname %></h1>
@@ -51,12 +53,18 @@
                 </div>
                 <div class="col-6">
                   <div class="text-end">
-                    <a
-                      class="btn btn-outline-dark mt-1 rounded-pill px-3 fw-bold"
-                      href="#"
-                      role="button"
-                      >Following</a
+                    <form
+                      action="/<%= locals.user.username %>/unfollowFollowing/<%=followingUser.id %>?_method=PATCH"
+                      method="post"
+                      class="d-inline"
                     >
+                      <button
+                        class="btn mt-1 btn-outline-dark rounded-pill px-3 fw-bold"
+                        type="submit"
+                      >
+                        Following
+                      </button>
+                    </form>
                   </div>
                 </div>
               </div>
@@ -65,7 +73,7 @@
             <!-- tarjeta FOLLOWERS -->
           </div>
         </div>
-        <div class="col-4 bg-secondary"></div>
+        <div class="col-md-4"><%- include("../partials/sidebarRight") %></div>
       </div>
     </div>
   </body>

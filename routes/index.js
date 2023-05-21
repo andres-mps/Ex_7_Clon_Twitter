@@ -21,6 +21,8 @@ const publicRoutes = require("./publicRoutes");
 const authRoutes = require("./authRoutes");
 const userFollowsRoutes = require("./userFollowsRoutes");
 
+const ensureAuthenticated = require("../middlewares/ensureAuthenticated");
+
 // const privateRoutes = require("./privateRoutes");
 
 module.exports = (app) => {
@@ -33,7 +35,8 @@ module.exports = (app) => {
 
   // app.use("/usuarios", userRoutes);
   app.use("/", authRoutes);
-  app.use("/usuarios", userFollowsRoutes); // para ver /following /followers
+  app.use(ensureAuthenticated);
+  app.use("/:username", userFollowsRoutes); // para ver /following /followers
   app.use("/", publicRoutes);
 };
 

@@ -6,7 +6,7 @@ const express = require("express");
 const sessions = require("./sessions");
 const routes = require("./routes");
 const passport = require("./passport");
-const makeUserAvailableInViews = require("./middlewares/makeUserAvailableInViews")
+const makeUserAvailableInViews = require("./middlewares/makeUserAvailableInViews");
 
 const APP_PORT = process.env.APP_PORT || 3000;
 const app = express();
@@ -18,9 +18,10 @@ app.set("view engine", "ejs");
 
 sessions(app);
 passport(app);
-routes(app);
 
 app.use(makeUserAvailableInViews);
+
+routes(app);
 
 app.listen(APP_PORT, () => {
   console.log(`\n[Express] Servidor corriendo en el puerto ${APP_PORT}.`);
