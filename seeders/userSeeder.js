@@ -73,7 +73,5 @@ module.exports = async () => {
   await Tweet.insertMany(tweets);
   await User.insertMany(users);
 
-  console.log("[Database] Se agregaron FOLLOWER, FOLLOWING y TWEETS.");
-
   console.log("[Database] Se corrió el seeder de Users.");
 };

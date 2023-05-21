@@ -2,18 +2,6 @@ const User = require("../models/User");
 const Tweet = require("../models/Tweet");
 const _ = require("lodash");
 
-// Display the specified resource.
-async function show(req, res) {}
-
-// Show the form for creating a new resource
-async function create(req, res) {}
-
-// Store a newly created resource in storage.
-async function store(req, res) {}
-
-// Show the form for editing the specified resource.
-async function edit(req, res) {}
-
 // ============ VISTA FOLLOWING ====================
 async function indexFollowing(req, res) {
   const user = await User.findOne({ username: req.user.username }).populate("following");
@@ -58,21 +46,10 @@ async function unfollowFollower(req, res) {
 }
 // ============ VISTA FOLLOWERS ====================
 
-// Remove the specified resource from storage.
-async function destroy(req, res) {}
-
-// Otros handlers...
-// ...
-
 module.exports = {
   indexFollowing,
   unfollowFollowing,
-  show,
-  create,
-  store,
-  edit,
   indexFollowers,
   followFollower,
   unfollowFollower,
-  destroy,
 };

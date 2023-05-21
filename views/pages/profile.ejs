@@ -56,7 +56,8 @@
                     href="/<%= locals.user.username %>/followers"
                   >
                     <p class="m-0 d-inline-block">
-                      <strong class="text-black">123</strong> Followers
+                      <strong class="text-black"><%= locals.user.followers.length %></strong>
+                      Followers
                     </p>
                   </a>
                   <a
@@ -64,7 +65,8 @@
                     href="/<%= locals.user.username %>/following"
                   >
                     <p class="m-0 d-inline-block">
-                      <strong class="text-black">123</strong> Following
+                      <strong class="text-black"><%= locals.user.following.length %></strong>
+                      Following
                     </p>
                   </a>
                 </div>

@@ -56,12 +56,16 @@ async function createUser(req, res) {
 }
 
 async function logout(req, res) {
-  req.logout(function (err) {
-    if (err) {
-      return next(err);
-    }
+  // req.logout(function (err) {
+  //   if (err) {
+  //     return next(err);
+  //   }
+  //   res.redirect("/");
+  // });
+  req.session.destroy(function (err) {
     res.redirect("/");
   });
+
   console.log("Logout successful");
 }
 module.exports = {
