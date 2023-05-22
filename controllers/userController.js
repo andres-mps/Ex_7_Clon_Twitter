@@ -4,13 +4,10 @@ const Tweet = require("../models/Tweet");
 // Display a listing of the resource.
 async function index(req, res) {
   try{
-    const result = await User.find({username: req.params.username }).populate("tweets");
-    const result2 = await Tweet.find({author: req.user.id}).populate("author");
-    //const tweets = result[0].tweets;
-    const tweets = result2;
+    const user = await User.find({username: req.params.username })
+    const tweets = await Tweet.find({author: user}).populate("author");
+    
     res.render("pages/profile", { tweets });
-
-    // para ver
   }catch(error){
     console.log(error);
   }
