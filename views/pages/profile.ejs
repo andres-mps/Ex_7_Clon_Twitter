@@ -27,7 +27,7 @@
               <div id="containerPhoto">
                 <img
                   id="profilePhoto"
-                  src="img/foto_prueba.jpg"
+                  src="<%=tweets[0].author.avatar%>"
                   class="rounded-circle"
                   width="170px"
                   height="170px"
@@ -46,26 +46,30 @@
               <div class="row p-0 m-0">
                 <div class="col-6 align-self-end">
                   <div id="userName">
-                    <h2 class="fs-4 m-0">Nombre de Usuario</h2>
-                    <p class="fw-light m-0" style="color: #7b7b7b">@nombreDeUsuario</p>
+                    <h2 class="fs-4 m-0">
+                      <%=tweets[0].author.firstname%> <%=tweets[0].author.lastname%>
+                    </h2>
+                    <p class="fw-light m-0" style="color: #7b7b7b">
+                      <%=tweets[0].author.username%>
+                    </p>
                   </div>
                 </div>
                 <div class="col-6 text-end align-self-end" style="color: #7b7b7b">
                   <a
                     class="text-decoration-none text-black"
-                    href="/<%= locals.user.username %>/followers"
+                    href="/<%=tweets[0].author.username%>/followers"
                   >
                     <p class="m-0 d-inline-block">
-                      <strong class="text-black"><%= locals.user.followers.length %></strong>
+                      <strong class="text-black"><%=tweets[0].author.followers.length%></strong>
                       Followers
                     </p>
                   </a>
                   <a
                     class="text-decoration-none text-black"
-                    href="/<%= locals.user.username %>/following"
+                    href="/<%=tweets[0].author.username%>/following"
                   >
                     <p class="m-0 d-inline-block">
-                      <strong class="text-black"><%= locals.user.following.length %></strong>
+                      <strong class="text-black"><%=tweets[0].author.following.length%></strong>
                       Following
                     </p>
                   </a>

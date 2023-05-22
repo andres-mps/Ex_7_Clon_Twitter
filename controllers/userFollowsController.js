@@ -4,9 +4,9 @@ const _ = require("lodash");
 
 // ============ VISTA FOLLOWING ====================
 async function indexFollowing(req, res) {
-  const user = await User.findOne({ username: req.user.username }).populate("following");
-  // res.json(user);
-  res.render("pages/following", { user });
+  const user = await User.findOne({ username: req.params.username }).populate("following");
+  res.json(user);
+  // res.render("pages/following", { user });
 }
 
 async function unfollowFollowing(req, res) {
@@ -15,7 +15,7 @@ async function unfollowFollowing(req, res) {
   await User.findByIdAndUpdate(req.user.id, { $pull: { following: followingId } });
   //quitamos USER de lista FOLLOWERS:
   await User.findByIdAndUpdate(followingId, { $pull: { followers: req.user.id } });
-  res.redirect(`/${req.user.username}/following`);
+  res.redirect(req.get("referer"));
 }
 // ============ VISTA FOLLOWING ====================
 
@@ -33,7 +33,7 @@ async function followFollower(req, res) {
   await User.findByIdAndUpdate(req.user.id, { $push: { following: followerId } });
   //agregamos el User como Follower
   await User.findByIdAndUpdate(followerId, { $push: { followers: req.user.id } });
-  res.redirect(`/${req.user.username}/followers`);
+  res.redirect(req.get("referer"));
 }
 
 async function unfollowFollower(req, res) {
@@ -42,7 +42,7 @@ async function unfollowFollower(req, res) {
   await User.findByIdAndUpdate(req.user.id, { $pull: { following: followerId } });
   //agregamos el User como Follower
   await User.findByIdAndUpdate(followerId, { $pull: { followers: req.user.id } });
-  res.redirect(`/${req.user.username}/followers`);
+  res.redirect(req.get("referer"));
 }
 // ============ VISTA FOLLOWERS ====================
 
