@@ -20,7 +20,19 @@ const Tweet = require("../models/Tweet");
  */
 
 async function showHome(req, res) {
-  res.render("pages/home");
+  try{
+    const tweets = [];
+    const following = req.user.following;
+    for(const followingId of following){
+      const followingTweets = await Tweet.find({author: followingId}).populate("author");
+      tweets.push(...followingTweets);
+    }
+    res.render("pages/home", { tweets });
+
+  }catch(error){
+    console.log(error)
+  }
+  
 }
 
 async function showContact(req, res) {
