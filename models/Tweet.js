@@ -1,6 +1,5 @@
-const passport = require("passport");
 const { mongoose, Schema } = require("../db");
-const { User } = require("./User");
+
 
 const tweetSchema = new Schema(
   {

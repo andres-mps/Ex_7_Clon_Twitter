@@ -42,13 +42,15 @@ tweets) {%>
             <% if(tweet.likes.includes(locals.user.id)){%>
             <button class="likes" type="submit">
               <img src="../img/icons/like-active.svg" alt="like-active" />
+              <p class="my-0 mx-2 d-inline redColor"><%= tweet.likes.length %></p>
             </button>
             <%}else{%>
             <button class="likes" type="submit">
               <img src="../img/icons/like.svg" alt="like" />
+              <p class="my-0 mx-2 d-inline"><%= tweet.likes.length %></p>
             </button>
             <%}%>
-            <p class="my-0 mx-2 d-inline"><%= tweet.likes.length %></p>
+            
           </form>
         </div>
         <div>

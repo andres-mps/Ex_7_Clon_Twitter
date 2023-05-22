@@ -28,19 +28,21 @@ module.exports = async () => {
   try {
     for (let i = 0; i < process.env.SEEDER_TOTAL_USERS; i++) {
       const lastname = faker.name.lastName();
+      const firstname = faker.name.firstName();
+      const password = await bcrypt.hash("123", 12);
       const user = new User({
-        firstname: faker.name.firstName(),
+        firstname: firstname,
         lastname: lastname,
         username: `@${lastname}`,
-        email: `${lastname}@email.com`,
-        password: await bcrypt.hash("123", 5),
+        email: `${firstname}${lastname}@email.com`,
+        password: password,
         bio: faker.lorem.paragraph(),
         avatar: faker.image.avatar(),
-        //following:,  // los cargaremos luego
-        //followers:, // los cargaremos luego
+        //following:,  // TODO
+        //followers:, // TODO
         createdAt: faker.date.past(),
         updatedAt: new Date(),
-        // tweets: , // los cargaremos luego
+        // tweets: , // TODO
       });
 
       for (let i = 0; i < Math.floor(Math.random() * 20) + 1; i++) {
