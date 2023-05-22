@@ -9,15 +9,6 @@ async function indexFollowing(req, res) {
   // res.json(req.params);
   res.render("pages/following", { user });
 }
-
-// async function unfollowFollowing(req, res) {
-//   const followingId = req.params.followingId;
-//   // unfollow:
-//   await User.findByIdAndUpdate(req.user.id, { $pull: { following: followingId } });
-//   //quitamos USER de lista FOLLOWERS:
-//   await User.findByIdAndUpdate(followingId, { $pull: { followers: req.user.id } });
-//   res.redirect(req.get("referer"));
-// }
 // ============ VISTA FOLLOWING ====================
 
 // ============ VISTA FOLLOWERS ====================
@@ -39,9 +30,8 @@ async function followFollower(req, res) {
 
 async function unFollow(req, res) {
   const followId = req.params.followId;
-  // follow a Follower:
+
   await User.findByIdAndUpdate(req.user.id, { $pull: { following: followId } });
-  //agregamos el User como Follower
   await User.findByIdAndUpdate(followId, { $pull: { followers: req.user.id } });
   res.redirect(req.get("referer"));
 }
