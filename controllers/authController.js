@@ -85,7 +85,7 @@ async function logout(req, res) {
     res.redirect("/");
   });
 
-  console.log("Logout successful");
+  console.log("bienvenido");
 }
 module.exports = {
   login,
