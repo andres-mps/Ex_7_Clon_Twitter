@@ -2,7 +2,7 @@ const User = require("../models/User");
 const Tweet = require("../models/Tweet");
 
 // Display a listing of the resource.
-async function index(req, res) {
+async function showProfile(req, res) {
   try{
     const user = await User.find({username: req.params.username })
     const tweets = await Tweet.find({author: user}).populate("author");
@@ -35,7 +35,7 @@ async function destroy(req, res) {}
 // ...
 
 module.exports = {
-  index,
+  showProfile,
   show,
   create,
   store,
