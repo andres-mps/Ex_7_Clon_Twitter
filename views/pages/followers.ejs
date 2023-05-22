@@ -55,7 +55,7 @@
                   <% if (userFollower.followers.includes(user._id)) { %>
                   <div class="text-end">
                     <form
-                      action="/<%= locals.user.username %>/unfollowFollower/<%=userFollower.id %>?_method=PATCH"
+                      action="/unfollow/<%=userFollower.id %>?_method=PATCH"
                       method="post"
                       class="d-inline"
                     >
@@ -71,7 +71,7 @@
                   <% } else { %>
                   <div class="text-end">
                     <form
-                      action="/<%= locals.user.username %>/followFollower/<%=userFollower.id%>?_method=PATCH"
+                      action="/followFollower/<%=userFollower.id%>?_method=PATCH"
                       method="post"
                       class="d-inline"
                     >
