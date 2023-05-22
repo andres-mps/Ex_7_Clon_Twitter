@@ -7,9 +7,7 @@ async function indexFollowing(req, res) {
   const user = await User.findOne({ username: req.params.username }).populate("following");
   res.render("pages/following", { user });
 }
-// ============ VISTA FOLLOWING ====================
 
-// ============ VISTA FOLLOWERS ====================
 async function indexFollowers(req, res) {
   const user = await User.findOne({ username: req.params.username }).populate("followers");
   res.render("pages/followers", { user });
