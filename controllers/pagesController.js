@@ -1,5 +1,7 @@
 const User = require("../models/User");
 const Tweet = require("../models/Tweet");
+const { formatDistanceToNow, format, isSameDay } = require("date-fns");
+const { en } = require("date-fns/locale");
 
 /**
  * Este archivo se utiliza en un proyecto donde se está utlizando server-side
@@ -20,19 +22,23 @@ const Tweet = require("../models/Tweet");
  */
 
 async function showHome(req, res) {
-  try{
+  try {
     const tweets = [];
     const following = req.user.following;
-    for(const followingId of following){
-      const followingTweets = await Tweet.find({author: followingId}).populate("author");
+    for (const followingId of following) {
+      const followingTweets = await Tweet.find({ author: followingId }).populate("author");
       tweets.push(...followingTweets);
     }
-    res.render("pages/home", { tweets });
-
-  }catch(error){
-    console.log(error)
+    res.render("pages/home", {
+      isSameDay,
+      formatDistanceToNow,
+      format,
+      en,
+      tweets,
+    });
+  } catch (error) {
+    console.log(error);
   }
-  
 }
 
 async function showContact(req, res) {

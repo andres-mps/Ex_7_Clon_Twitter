@@ -1,4 +1,6 @@
 const User = require("../models/User");
+const { formatDistanceToNow, format, isSameDay } = require("date-fns");
+const { en } = require("date-fns/locale");
 const Tweet = require("../models/Tweet");
 
 // Display a listing of the resource.
@@ -6,8 +8,13 @@ async function showProfile(req, res) {
   try {
     const user = await User.find({ username: req.params.username });
     const tweets = await Tweet.find({ author: user }).populate("author");
-    // res.json(tweets);
-    res.render("pages/profile", { tweets });
+    res.render("pages/profile", {
+      isSameDay,
+      formatDistanceToNow,
+      format,
+      en,
+      tweets,
+    });
   } catch (error) {
     console.log(error);
   }

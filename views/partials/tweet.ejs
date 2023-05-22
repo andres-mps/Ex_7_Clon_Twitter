@@ -22,7 +22,11 @@
             <small class="text-body-tertiary"><%= tweet.author.username%> •</small>
           </p>
           <p class="card-text my-0">
-            <small class="text-body-tertiary"><%=tweet.createdAt%></small>
+            <small class="text-body-tertiary"
+              ><%= isSameDay(new Date(tweet.createdAt), new Date()) ? formatDistanceToNow(new
+              Date(tweet.createdAt), { addSuffix: true, locale: en }) : format(new
+              Date(tweet.createdAt), 'dd MMMM', { locale: es })%></small
+            >
           </p>
         </div>
       </div>
