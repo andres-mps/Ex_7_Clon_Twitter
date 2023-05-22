@@ -8,6 +8,15 @@ async function index(req, res, next) {
   return next();
 }
 
+async function likes(req, res) {
+  console.log(req.params.tweetId);
+  const likes = await Tweet.findByIdAndUpdate(req.params.tweetId, {
+    $push: { likes: req.user.id },
+  }).populate("likes");
+
+  res.redirect("/");
+}
+
 // Display the specified resource.
 async function show(req, res) {}
 
@@ -29,15 +38,7 @@ async function destroy(req, res) {}
 // Otros handlers...
 async function showLikes(req, res) {}
 
-
-
 module.exports = {
   index,
-  show,
-  create,
-  store,
-  edit,
-  update,
-  destroy,
-  showLikes,
+  likes,
 };
