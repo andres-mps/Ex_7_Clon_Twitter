@@ -1,10 +1,10 @@
-const Tweet = require("../models/Tweet")
+const Tweet = require("../models/Tweet");
 
 // Display a listing of the resource.
 async function index(req, res, next) {
-  const tweets = await Tweet.find({author: req.user.id})
-  req.user.tweets = tweets
-  console.log(req.user.tweets[0].likes.length);
+  const tweets = await Tweet.find({ author: req.user.id });
+  req.user.tweets = tweets;
+  // console.log(req.user.tweets[0].likes.length);
   return next();
 }
 
@@ -27,9 +27,7 @@ async function update(req, res) {}
 async function destroy(req, res) {}
 
 // Otros handlers...
-async function showLikes(req, res) {
-
-}
+async function showLikes(req, res) {}
 
 module.exports = {
   index,
@@ -39,5 +37,5 @@ module.exports = {
   edit,
   update,
   destroy,
-  showLikes
+  showLikes,
 };

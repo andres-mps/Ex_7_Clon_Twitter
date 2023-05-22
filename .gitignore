@@ -164,3 +164,6 @@ _.msp
 
 # Otros
 .vercel
+
+#img
+img*

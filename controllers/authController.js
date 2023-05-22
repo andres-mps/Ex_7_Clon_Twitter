@@ -57,10 +57,13 @@ async function createUser(req, res) {
         password: await bcrypt.hash(password, 10),
         bio: "",
         avatar: files["avatar"].newFilename,
+        tweets: [],
+        following: [],
+        followers: [],
       });
 
-      //newUser.save().then(res.redirect("/usuarios"));
-      return res.redirect("/");
+      newUser.save().then(res.redirect("/usuarios"));
+      // return res.redirect("/");
     }
 
     // if (newUser) {
