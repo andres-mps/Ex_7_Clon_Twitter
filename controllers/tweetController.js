@@ -1,9 +1,7 @@
 const Tweet = require("../models/Tweet");
 
 // Display a listing of the resource.
-async function index(req, res) {
- 
-}
+async function index(req, res) {}
 
 async function likes(req, res) {
   const userLike = await Tweet.findOne({
@@ -34,14 +32,14 @@ async function create(req, res) {}
 
 // Store a newly created resource in storage.
 async function store(req, res) {
-  try{
+  try {
     const content = req.body.content;
     await Tweet.create({
       content: content,
-      author: req.user
-    })
+      author: req.user,
+    });
     res.redirect("back");
-  }catch(error){
+  } catch (error) {
     console.log(error);
   }
 }
@@ -54,10 +52,10 @@ async function update(req, res) {}
 
 // Remove the specified resource from storage.
 async function destroy(req, res) {
-  try{
+  try {
     await Tweet.findByIdAndDelete(req.body.tweetId);
-  }catch(error){
-    console.log(error)
+  } catch (error) {
+    console.log(error);
   }
 }
 
@@ -65,6 +63,8 @@ async function destroy(req, res) {
 async function showLikes(req, res) {}
 
 module.exports = {
+  store,
+  destroy,
   index,
   likes,
 };
