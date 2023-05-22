@@ -35,7 +35,6 @@ module.exports = (app) => {
    */
 
   app.use("/", authRoutes);
-
   app.use(ensureAuthenticated);
 
   app.use("/", userRoutes);
