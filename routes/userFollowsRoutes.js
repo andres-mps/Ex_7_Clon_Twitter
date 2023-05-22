@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const userFollowsController = require("../controllers/userFollowsController");
 
-router.get("/following", userFollowsController.indexFollowing);
+router.get("/:username/following", userFollowsController.indexFollowing);
 router.patch("/unfollowFollowing/:followingId", userFollowsController.unfollowFollowing);
 
 // router.get("/crear", userFollowsController.create);
