@@ -10,9 +10,7 @@ router.get("/", pagesController.showHome);
 router.get("/profile", tweetController.index, function (req, res) {
   res.render("pages/profile");
 });
-router.get("/prueba", (req, res) => {
-  res.render("partials/sidebarRight");
-});
+
 router.get("*", function (req, res) {
   res.status(404).render("pages/404");
 });

@@ -1,4 +1,8 @@
 const Tweet = require("../models/Tweet");
+<<<<<<< Updated upstream
+=======
+const User = require("../models/User");
+>>>>>>> Stashed changes
 
 // Display a listing of the resource.
 async function index(req, res, next) {
@@ -29,6 +33,20 @@ async function destroy(req, res) {}
 // Otros handlers...
 async function showLikes(req, res) {}
 
+async function homeTweets(req, res) {
+  try{
+    const following = req.user.following
+    const tweets = []
+    for(const followingId of following){
+      const followingTweets = await Tweet.find({author: followingId}).populate("author");
+      tweets.push(...followingTweets);
+    }
+    
+  }catch(error){
+    console.log(error);
+  }
+}
+
 module.exports = {
   index,
   show,
@@ -38,4 +56,8 @@ module.exports = {
   update,
   destroy,
   showLikes,
+<<<<<<< Updated upstream
+=======
+  homeTweets
+>>>>>>> Stashed changes
 };
