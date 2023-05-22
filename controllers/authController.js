@@ -56,7 +56,7 @@ async function createUser(req, res) {
         email: email,
         password: await bcrypt.hash(password, 10),
         bio: "",
-        avatar: files["avatar"].newFilename,
+        avatar: "img/avatars/" + files["avatar"].newFilename,
         tweets: [],
         following: [],
         followers: [],
