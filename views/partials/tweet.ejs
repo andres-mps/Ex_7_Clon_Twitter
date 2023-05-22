@@ -26,7 +26,7 @@ tweets) {%>
             <small class="text-body-tertiary"
               ><%= isSameDay(new Date(tweet.createdAt), new Date()) ? formatDistanceToNow(new
               Date(tweet.createdAt), { addSuffix: true, locale: en }) : format(new
-              Date(tweet.createdAt), 'dd MMMM', { locale: es })%></small
+              Date(tweet.createdAt), 'dd MMMM', { locale: en })%></small
             >
           </p>
         </div>
