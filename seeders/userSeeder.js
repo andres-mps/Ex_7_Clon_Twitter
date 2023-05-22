@@ -25,11 +25,11 @@ module.exports = async () => {
   /*=========== LOOP USERS ================*/
   const users = [];
   const tweets = [];
+  const password = await bcrypt.hash("123", 12);
   try {
     for (let i = 0; i < process.env.SEEDER_TOTAL_USERS; i++) {
       const lastname = faker.name.lastName();
       const firstname = faker.name.firstName();
-      const password = await bcrypt.hash("123", 12);
       const user = new User({
         firstname: firstname,
         lastname: lastname,
