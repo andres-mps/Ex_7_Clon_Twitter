@@ -7,6 +7,7 @@ const modal = document.getElementById("myModal");
 
 const btnSmall = document.getElementById("sidebarIconTweet");
 const btn = document.getElementById("sidebarTweet");
+const closeButton = document.getElementById("closeButton");
 
 btnSmall.addEventListener("click", function (event) {
   event.preventDefault();
@@ -19,7 +20,7 @@ btn.addEventListener("click", function (event) {
 });
 
 window.addEventListener("click", function (event) {
-  if (event.target === modal) {
+  if (event.target === modal || event.target === closeButton) {
     modal.style.display = "none";
   }
 });

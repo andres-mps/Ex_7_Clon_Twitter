@@ -62,15 +62,14 @@ async function createUser(req, res) {
         followers: [],
       });
 
-      newUser.save().then(res.redirect("/usuarios"));
-      // return res.redirect("/");
-    }
+      newUser.save();
 
-    // if (newUser) {
-    //   req.login(newUser, () => res.redirect("/home"));
-    // } else {
-    //   res.redirect("back");
-    // }
+      if (newUser) {
+        req.login(newUser, () => res.redirect("/"));
+      } else {
+        res.redirect("back");
+      }
+    }
   });
 }
 

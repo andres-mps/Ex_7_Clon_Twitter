@@ -53,14 +53,14 @@ async function update(req, res) {}
 // Remove the specified resource from storage.
 async function destroy(req, res) {
   try {
-    await Tweet.findByIdAndDelete(req.body.tweetId);
+    await Tweet.findByIdAndDelete(req.params.id);
+    res.redirect(req.get("referer"));
   } catch (error) {
     console.log(error);
   }
 }
 
 // Otros handlers...
-async function showLikes(req, res) {}
 
 module.exports = {
   store,

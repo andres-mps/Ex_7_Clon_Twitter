@@ -1,4 +1,5 @@
-<% for(const tweet of tweets) {%>
+<% tweets.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); %> <% for(const tweet of
+tweets) {%>
 <div class="card-footer tweet p-0 mt-2">
   <div class="row mb-3 p-2 g-0 position-relative">
     <div class="col-1 d-flex align-items-start">
@@ -22,7 +23,11 @@
             <small class="text-body-tertiary"><%= tweet.author.username%> •</small>
           </p>
           <p class="card-text my-0">
-            <small class="text-body-tertiary"><%=tweet.createdAt%></small>
+            <small class="text-body-tertiary"
+              ><%= isSameDay(new Date(tweet.createdAt), new Date()) ? formatDistanceToNow(new
+              Date(tweet.createdAt), { addSuffix: true, locale: en }) : format(new
+              Date(tweet.createdAt), 'dd MMMM', { locale: en })%></small
+            >
           </p>
         </div>
       </div>
@@ -47,9 +52,13 @@
           </form>
         </div>
         <div>
-          <a href="#" role="button">
-            <img src="../img/icons/delete.svg" alt="delete" />
-          </a>
+          <% if(locals.user.id === tweet.author.id) { %>
+          <form method="POST" action="/delete/<%=tweet.id%>?_method=DELETE">
+            <button class="delete">
+              <img src="../img/icons/delete.svg" alt="delete" />
+            </button>
+          </form>
+          <% } %>
         </div>
       </div>
     </div>
