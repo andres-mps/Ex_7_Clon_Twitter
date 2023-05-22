@@ -31,8 +31,7 @@
       <div class="col-12 d-flex justify-content-between align-items-center">
         <div class="d-flex">
           <form action="/tweet/<%= tweet.id%>/like" method="post">
-            <% let likedTweet = false; for (const like of tweet.likes){ if (like === locals.user.id)
-            { likedTweet = true; } } if(likedTweet){%>
+            <% if(tweet.likes.includes(locals.user.id)){%>
             <button class="likes" type="submit">
               <img src="../img/icons/like-active.svg" alt="like-active" />
             </button>
