@@ -2,19 +2,22 @@
 <div class="card-footer tweet p-0 mt-2">
   <div class="row mb-3 p-2 g-0 position-relative">
     <div class="col-1 d-flex align-items-start">
-      <img
-        src="<%=tweet.author.avatar%>"
-        class="img-fluid rounded-circle w-100 mb-2"
-        alt="avatar"
-      />
+      <a class="text-decoration-none text-black" href="/<%=tweet.author.username%>">
+        <img
+          src="<%=tweet.author.avatar%>"
+          class="img-fluid rounded-circle w-100 mb-2"
+          alt="avatar"
+      /></a>
     </div>
     <!-- avatar -->
     <div class="col-10 ms-3">
       <div class="text-start">
         <div class="card-body d-flex align-content-start">
-          <h5 class="card-title p-0 fs-6">
-            <%=tweet.author.firstname%> <%=tweet.author.lastname%>
-          </h5>
+          <a class="text-decoration-none text-black" href="/<%=tweet.author.username%>">
+            <h5 class="card-title p-0 fs-6">
+              <%=tweet.author.firstname%> <%=tweet.author.lastname%>
+            </h5></a
+          >
           <p class="card-text my-0 mx-2">
             <small class="text-body-tertiary"><%= tweet.author.username%> •</small>
           </p>
