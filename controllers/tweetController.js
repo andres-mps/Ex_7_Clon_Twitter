@@ -14,13 +14,13 @@ async function likes(req, res) {
       $push: { likes: req.user.id },
     }).populate("likes");
 
-    res.redirect("/");
+    res.redirect("back");
   } else {
     const likes = await Tweet.findByIdAndUpdate(req.params.tweetId, {
       $pull: { likes: req.user.id },
     }).populate("likes");
 
-    res.redirect("/");
+    res.redirect("back");
   }
 }
 
