@@ -9,12 +9,24 @@ async function index(req, res, next) {
 }
 
 async function likes(req, res) {
-  console.log(req.params.tweetId);
-  const likes = await Tweet.findByIdAndUpdate(req.params.tweetId, {
-    $push: { likes: req.user.id },
-  }).populate("likes");
+  const userLike = await Tweet.findOne({
+    _id: req.params.tweetId,
+    likes: req.user.id,
+  });
 
-  res.redirect("/");
+  if (userLike === null) {
+    const likes = await Tweet.findByIdAndUpdate(req.params.tweetId, {
+      $push: { likes: req.user.id },
+    }).populate("likes");
+
+    res.redirect("/");
+  } else {
+    const likes = await Tweet.findByIdAndUpdate(req.params.tweetId, {
+      $pull: { likes: req.user.id },
+    }).populate("likes");
+
+    res.redirect("/");
+  }
 }
 
 // Display the specified resource.
