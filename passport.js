@@ -54,7 +54,7 @@ module.exports = (app) => {
 
   passport.deserializeUser(async (id, cb) => {
     try {
-      const user = await User.findById(id);
+      const user = await User.findById(id).populate("tweets");
       cb(null, user); // Usuario queda disponible en req.user.
     } catch (err) {
       cb(err);

@@ -51,9 +51,13 @@
           </form>
         </div>
         <div>
-          <a href="#" role="button">
-            <img src="../img/icons/delete.svg" alt="delete" />
-          </a>
+          <% if(locals.user.id === tweet.author.id) { %>
+          <form method="POST" action="/delete/<%=tweet.id%>?_method=DELETE">
+            <button class="delete">
+              <img src="../img/icons/delete.svg" alt="delete" />
+            </button>
+          </form>
+          <% } %>
         </div>
       </div>
     </div>
