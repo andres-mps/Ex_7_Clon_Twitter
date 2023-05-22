@@ -5,17 +5,11 @@ const _ = require("lodash");
 // ============ VISTA FOLLOWING ====================
 async function indexFollowing(req, res) {
   const user = await User.findOne({ username: req.params.username }).populate("following");
-  console.log(req.params.username);
-  // res.json(req.params);
   res.render("pages/following", { user });
 }
-// ============ VISTA FOLLOWING ====================
 
-// ============ VISTA FOLLOWERS ====================
 async function indexFollowers(req, res) {
   const user = await User.findOne({ username: req.params.username }).populate("followers");
-  console.log(req.params.username);
-  // res.json(req.user);
   res.render("pages/followers", { user });
 }
 
